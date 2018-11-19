@@ -1,15 +1,19 @@
 <template>
   <div v-title="$route.meta.title">
+    <v-head></v-head>
     <div class="about">
-      <img src="../../assets/images/Readward.png">
-      <h1 class="title">Readward</h1>
+      <img class="readWard" src="../../assets/images/Readward.png">
+      <h1 class="Rtitle">Readward</h1>
       <h3>{{$t("message.aboutUs.Notice")}}</h3>
       <p>{{$t("message.aboutUs.noticeContent")}}</p>
     </div>
+    <v-footer></v-footer>
   </div>
 </template>
 
 <script>
+import head from '../Modules/head'
+import footer from '../Modules/footer'
 export default {
   name: 'aboutUs',
   data() {
@@ -17,8 +21,13 @@ export default {
       langType: 'en_US'
     }
   },
+  components: {
+    vHead: head,
+    vFooter: footer
+  },
   mounted() {
-    this.langType = this.$getUrlParam('lang')
+    document.getElementsByTagName('body')[0].className = 'aboutUs'
+    this.langType = this.$store.state.langType
     if (
       this.langType === null ||
       this.langType === undefined ||
@@ -40,7 +49,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less">
 @charset 'utf-8';
 @font-face {
   font-family: 'font_a';
@@ -50,33 +59,35 @@ export default {
   font-family: 'font_b';
   src: url('../../assets/fonts/PINGFANGREGULAR.ttf') format('truetype');
 }
-body {
+.aboutUs {
   background-color: #f0eff5;
+}
+.about {
   padding: 0.8rem 0.3rem 0.3rem 0.3rem;
-}
-img {
-  width: 1.33rem;
-  height: 1.33rem;
-  display: block;
-  margin: 0 auto 0.26rem;
-}
-.title {
-  font-size: 0.34rem;
-  font-family: 'font_a';
-  font-weight: 700;
-  color: #e41936;
-  text-align: center;
-}
-h3 {
-  font-size: 0.3rem;
-  color: #333333;
-  margin-top: 0.8rem;
-}
-p {
-  font-size: 0.3rem;
-  font-family: 'font_b';
-  color: #4b4b4d;
-  line-height: 0.5rem;
-  margin-top: 0.6rem;
+  .readWard {
+    width: 1.33rem;
+    height: 1.33rem;
+    display: block;
+    margin: 0 auto 0.26rem;
+  }
+  .Rtitle {
+    font-size: 0.34rem;
+    font-family: 'font_a';
+    font-weight: 700;
+    color: #e41936;
+    text-align: center;
+  }
+  h3 {
+    font-size: 0.3rem;
+    color: #333333;
+    margin-top: 0.8rem;
+  }
+  p {
+    font-size: 0.3rem;
+    font-family: 'font_b';
+    color: #4b4b4d;
+    line-height: 0.5rem;
+    margin-top: 0.6rem;
+  }
 }
 </style>

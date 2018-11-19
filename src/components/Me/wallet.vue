@@ -1,5 +1,6 @@
 <template>
   <div v-title="$route.meta.title">
+    <v-head></v-head>
     <!-- wallet head -->
     <div class="header">
       <h3 :class="chooseType ==='income'?'choose':''" @click="select('income')">{{$t("message.wallet.income")}}</h3>
@@ -150,10 +151,13 @@
         <div class="goShare" @click="jumpView('1')">{{$t("message.exchange.PayPalReward")}}</div>
       </div>
     </div>
+    <v-footer></v-footer>
   </div>
 </template>
 
 <script>
+import head from '../Modules/head'
+import footer from '../Modules/footer'
 import { InfiniteScroll } from 'mint-ui'
 import { Indicator } from 'mint-ui'
 export default {
@@ -207,9 +211,13 @@ export default {
       langType: 'en_US'
     }
   },
+  components: {
+    vHead: head,
+    vFooter: footer
+  },
   mounted() {
     document.getElementsByTagName('body')[0].className = 'wallte'
-    this.langType = this.$getUrlParam('lang')
+    this.langType = this.$store.state.langType
     if (
       this.langType === null ||
       this.langType === undefined ||

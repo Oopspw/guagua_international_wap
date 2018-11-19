@@ -1,5 +1,6 @@
 <template>
   <div v-title="$route.meta.title">
+    <v-head></v-head>
     <div class="bottom">
       <img src="../../assets/images/background3@2x.png">
     </div>
@@ -55,10 +56,13 @@
     <div class="warn" v-if="warn_type===1">
       <p>{{warn_content}}</p>
     </div>
+    <v-footer></v-footer>
   </div>
 </template>
 
 <script>
+import head from '../Modules/head'
+import footer from '../Modules/footer'
 export default {
   name: 'inviteFriend',
   data() {
@@ -85,9 +89,13 @@ export default {
       rewardparent: '0'
     }
   },
+  components: {
+    vHead: head,
+    vFooter: footer
+  },
   mounted() {
     document.getElementsByTagName('body')[0].className = 'inviteFriend'
-    this.langType = this.$getUrlParam('lang')
+    this.langType = this.$store.state.langType
     if (
       this.langType === null ||
       this.langType === undefined ||

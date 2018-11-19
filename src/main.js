@@ -5,17 +5,20 @@ import App from './App'
 import router from './router'
 import Vuex from 'vuex'
 import store from './vuex/store'
-import xmlHttp from './common/js/xmlhttp'
+import packaging from './common/js/packaging'
 // 引入初始化css
 import './common/css/public.css'
 import './common/css/style.css'
 import './assets/js/rem.js'
+import artContent from '../src/components/Offers/content.vue'
 import MintUI from 'mint-ui'
 import VueAnalytics from 'vue-analytics'
 import VueI18n from 'vue-i18n'
+import Axios from 'axios'
 import en from '../static/lang/en_US'
 import zh from '../static/lang/zh_CN'
 import ms from '../static/lang/ms_MY'
+Vue.prototype.$axios = Axios
 Vue.use(VueI18n)
 const i18n = new VueI18n({
   locale: 'en_US',
@@ -33,8 +36,9 @@ Vue.use(VueAnalytics, {
   }
 })
 Vue.use(Vuex)
-Vue.use(xmlHttp)
+Vue.use(packaging)
 Vue.use(MintUI)
+Vue.use(artContent)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

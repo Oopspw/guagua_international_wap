@@ -92,6 +92,24 @@ export default new Router({
       meta: {
         title: 'Withdraw'
       }
+    },
+    // Offers 文章 文章列表
+    {
+      path: '/articleList',
+      name: 'articleList',
+      component: resolve =>
+        require(['components/Offers/articleList.vue'], resolve),
+      meta: {
+        title: 'Rewards'
+      }
+    },
+    {
+      path: '/article',
+      name: 'article',
+      component: resolve => require(['components/Offers/article.vue'], resolve),
+      meta: {
+        title: 'Rewards'
+      }
     }
   ]
 })

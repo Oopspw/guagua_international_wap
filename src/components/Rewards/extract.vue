@@ -1,5 +1,6 @@
 <template>
   <div v-title="$route.meta.title">
+    <v-head></v-head>
     <img class="bankLogo" src="../../assets/images/Maybank@2x.png" alt="">
     <h3 class="bankName">{{$t("message.extract.bankName")}}</h3>
     <p class="bankMoney"><span>RM</span> {{money}}</p>
@@ -9,6 +10,7 @@
       <p class="left">{{$t("message.extract.Time")}}</p>
       <p class="right">{{time}}</p>
     </div>
+    <!-- 占位用 -->
     <div class="nullBox"></div>
     <div class="box">
       <ul>
@@ -56,10 +58,14 @@
     <div class="warn" v-if="warn_type===1">
       <p>{{warn_content}}</p>
     </div>
+    <v-footer></v-footer>
   </div>
 </template>
 
 <script>
+
+import head from '../Modules/head'
+import footer from '../Modules/footer'
 export default {
   name: 'extract',
   data() {
@@ -80,6 +86,10 @@ export default {
       langType: 'en_US',
       eyes: 'hide'
     }
+  },
+  components: {
+    vHead: head,
+    vFooter: footer
   },
   mounted() {
     document.getElementsByTagName('body')[0].className = 'extract'
@@ -126,22 +136,24 @@ export default {
     }
   },
   methods: {
-    showReturn() {
-      if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-        window.webkit.messageHandlers.showReturn.postMessage('')
-      } else {
-        window.taskCentre.showReturn()
-      }
-    },
+    // 显示返回按钮
+    // showReturn() {
+    //   if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+    //     window.webkit.messageHandlers.showReturn.postMessage('')
+    //   } else {
+    //     window.taskCentre.showReturn()
+    //   }
+    // },
     // expenses
-    jumpView(type) {
-      localStorage.expenses = 'expenses'
-      if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-        window.webkit.messageHandlers.jumpView.postMessage(type)
-      } else {
-        window.taskCentre.jumpView(type)
-      }
-    },
+    // 跳转页面
+    // jumpView(type) {
+    //   localStorage.expenses = 'expenses'
+    //   if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+    //     window.webkit.messageHandlers.jumpView.postMessage(type)
+    //   } else {
+    //     window.taskCentre.jumpView(type)
+    //   }
+    // },
     showAccountNumber() {
       if (this.eyes === 'show') {
         this.eyes = 'hide'
@@ -205,12 +217,13 @@ export default {
         res => {
           // console.log(res)
           this.showWarnTips(res.msg.substr(2))
-          localStorage.expenses = 'expenses'
-          if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-            window.webkit.messageHandlers.jumpView.postMessage('2')
-          } else {
-            window.taskCentre.jumpView('2')
-          }
+          // 跳转至账本 支出项
+          // localStorage.expenses = 'expenses'
+          // if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+          //   window.webkit.messageHandlers.jumpView.postMessage('2')
+          // } else {
+          //   window.taskCentre.jumpView('2')
+          // }
         },
         res => {
           //console.log(res)

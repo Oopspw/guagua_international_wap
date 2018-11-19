@@ -1,7 +1,6 @@
 <template>
   <div v-title="$route.meta.title">
-
-    <Vhead></Vhead>
+    <v-head></v-head>
     <!-- bannar 图 -->
     <div class="bannar">
       <img v-if="langType ==='en_US'" src="../../assets/images/en/iocn_top@2x.png" alt="">
@@ -93,14 +92,14 @@
       <img v-if="langType ==='ms_MY'" class="inviteButton" src="../../assets/images/my/Group3@2x.png" alt="">
       <img class="closeBox" src="../../assets/images/closeBox@2x.png" @click="mask=false">
     </div>
-    <Vfooter></Vfooter>
+    <v-footer></v-footer>
   </div>
 </template>
 
 <script>
 import { Indicator } from 'mint-ui'
-import Vhead from '../Modules/head'
-import Vfooter from '../Modules/footer'
+import head from '../Modules/head'
+import footer from '../Modules/footer'
 export default {
   name: 'money',
   data() {
@@ -122,14 +121,14 @@ export default {
     }
   },
   components: {
-    Vhead: Vhead,
-    Vfooter: Vfooter
+    vHead: head,
+    vFooter: footer
   },
   created() {
     this.userid = this.$getUrlParam('userid')
     this.token = this.$getUrlParam('token')
     this.appv = this.$getUrlParam('infversionApp')
-    this.langType = this.$getUrlParam('lang')
+    this.langType = this.$store.state.langType
     if (
       this.langType === null ||
       this.langType === undefined ||
@@ -162,7 +161,7 @@ export default {
       window.location.reload()
     }
     document.getElementsByTagName('body')[0].className = 'money'
-    this.langType = this.$getUrlParam('lang')
+    this.langType = this.$store.state.langType
     if (
       this.langType === null ||
       this.langType === undefined ||

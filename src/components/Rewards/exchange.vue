@@ -1,5 +1,6 @@
 <template>
   <div v-title="$route.meta.title">
+    <v-head></v-head>
     <div class="contain">
       <h3>{{$t("message.exchange.myBalance")}}</h3>
       <h1 v-if="!loginFlag">{{$t("message.exchange.getLogin")}}</h1>
@@ -64,10 +65,13 @@
     <div class="warn" v-if="warn_type===1">
       <p>{{warn_content}}</p>
     </div>
+    <v-footer></v-footer>
   </div>
 </template>
 
 <script>
+import head from '../Modules/head'
+import footer from '../Modules/footer'
 import { InfiniteScroll } from 'mint-ui'
 export default {
   name: 'exchange',
@@ -96,11 +100,15 @@ export default {
       langType: 'en_US'
     }
   },
+  components: {
+    vHead: head,
+    vFooter: footer
+  },
   created() {
     this.userid = this.$getUrlParam('userid')
     this.token = this.$getUrlParam('token')
     this.appv = this.$getUrlParam('infversionApp')
-    this.langType = this.$getUrlParam('lang')
+    this.langType = this.$store.state.langType
     if (
       this.langType === null ||
       this.langType === undefined ||
@@ -134,7 +142,7 @@ export default {
     this.userid = this.$getUrlParam('userid')
     this.token = this.$getUrlParam('token')
     this.appv = this.$getUrlParam('infversionApp')
-    this.langType = this.$getUrlParam('lang')
+    this.langType = this.$store.state.langType
     if (
       this.langType === null ||
       this.langType === undefined ||

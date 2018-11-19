@@ -9,6 +9,8 @@ const store = new Vuex.Store({
     cid: '1',
     userId: '',
     status: '104',
+    pageType: 1,
+    langType: 'zh_CN',
     selected: [],
     selectType: '',
     selectTime: '',
@@ -16,7 +18,18 @@ const store = new Vuex.Store({
       a: '2'
     }
   },
+  getters: {
+    status (state) {
+      return state.status
+    },
+    pageType (state) {
+      return state.pageType
+    }
+  },
   mutations: {
+    pageType (state, msg) {
+      state.pageType = msg
+    },
     id (state, msg) {
       state.id = msg
     },
