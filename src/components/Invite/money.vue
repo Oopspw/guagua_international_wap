@@ -474,7 +474,9 @@ export default {
   -webkit-transform: translate(-50%, -50%);
   z-index: 166;
   img {
-    width: 100%;
+    height: 10rem;
+    display: block;
+    margin: 0 auto;
   }
   .closeBox {
     width: 0.7rem;

@@ -1,22 +1,6 @@
 // zhCHS.js
 module.exports = {
   message: {
-    // 联系我们
-    contactUs: {
-      palpayEmail: 'Paypal 邮箱',
-      EnterEmail: '请输入您的Paypal 邮箱',
-      Redeem: '兑换',
-      Precautions: '注意事项：',
-      Precautions_first:
-        '1.如果没有使用电子邮件地址注册PayPal帐户，兑换的奖励将不能提现。',
-      Precautions_two: '2.paypal将扣除一些交易费用。',
-      Precautions_three:
-        '3.你的金币将在72小时内被兑换成你所要求的奖励，请确保输入正确的邮箱。交易一旦完成，恕不退款。',
-      successTitle: '提交成功',
-      successContent:
-        '我们已收到您的兑换申请，付款正在进行中，您可以在“我的兑换”中查看兑换情况！',
-      finishBtn: '去查看'
-    },
     exchange: {
       myBalance: '我的余额(金币)',
       getLogin: '登录查看',

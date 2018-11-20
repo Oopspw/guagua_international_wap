@@ -1,21 +1,6 @@
 // en.js
 module.exports = {
   message: {
-    contactUs: {
-      palpayEmail: 'Paypal email',
-      EnterEmail: 'Enter your PayPal email',
-      Redeem: 'Redeem',
-      Precautions: 'Precautions：',
-      Precautions_first:
-        '1. Payment WILL NOT be made if the emailaddress is not registered to a Paypal account.',
-      Precautions_two: '2. Paypal WILL take out some transaction fees.',
-      Precautions_three:
-        '3. Payment will be made within 72 hours，Please make sure you enter the correct details. No refunds can be made once the gift was sent.',
-      successTitle: 'Submitted successfully',
-      successContent:
-        'We have received your redemption request, payment is in progress, you can check the redemption in "My Exchange"!',
-      finishBtn: 'Go Check'
-    },
     exchange: {
       myBalance: 'My balance (coins)',
       getLogin: 'Get after login',

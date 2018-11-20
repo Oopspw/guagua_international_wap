@@ -1,21 +1,6 @@
 // en.js
 module.exports = {
   message: {
-    contactUs: {
-      palpayEmail: 'Paypal e-mel',
-      EnterEmail: 'Masukkan email PayPal anda',
-      Redeem: 'Menebus',
-      Precautions: 'Langkah berjaga-jaga:',
-      Precautions_first:
-        '1. bayaran tidak akan dibuat jika emailaddress yang tidak berdaftar untuk akaun Paypal.',
-      Precautions_two: '2. Paypal akan mengambil beberapa yuran urus niaga.',
-      Precautions_three:
-        '3. bayaran akan dibuat dalam masa 72 jam, sila pastikan anda memasukkan butir-butir yang betul. Tiada bayaran balik boleh dibuat sebaik sahaja Hadiah tersebut telah dihantar.',
-      successTitle: 'Permohonan di dalam berjaya',
-      successContent:
-        'Kami telah menerima permintaan penebusan anda, pembayaran sedang berjalan, anda boleh menyemak penebusan di "My Exchange"!',
-      finishBtn: 'Pergi menyemak'
-    },
     exchange: {
       myBalance: 'Baki saya(coins)',
       getLogin: 'Selepas log masuk',
