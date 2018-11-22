@@ -25,6 +25,14 @@ export default new Router({
     },
     // 我的页面
     {
+      path: '/userIndex',
+      name: 'userIndex',
+      component: resolve => require(['components/Me/index.vue'], resolve),
+      meta: {
+        title: 'Me'
+      }
+    },
+    {
       path: '/aboutUs',
       name: 'aboutUs',
       component: resolve => require(['components/Me/aboutUs.vue'], resolve),

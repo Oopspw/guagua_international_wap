@@ -75,7 +75,7 @@ export default {
       } else if (this.$store.state.pageType === 3) {
         this.$router.push({ path: '/exchange' })
       } else {
-        this.$router.push({ path: '/aboutUs' })
+        this.$router.push({ path: '/userIndex' })
       }
     }
   }

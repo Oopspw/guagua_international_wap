@@ -3,9 +3,9 @@
     <v-head></v-head>
     <!-- bannar 图 -->
     <div class="bannar">
-      <img v-if="langType ==='en_US'" src="../../assets/images/en/iocn_top@2x.png" alt="">
-      <img v-if="langType ==='zh_CN'" src="../../assets/images/cn/iocn_top@2x.png" alt="">
-      <img v-if="langType ==='ms_MY'" src="../../assets/images/my/iocn_top@2x.png" alt="">
+      <img v-if="langType ==='en_US'" src="../../assets/images/invite/en/iocn_top@2x.png">
+      <img v-if="langType ==='zh_CN'" src="../../assets/images/invite/cn/iocn_top@2x.png">
+      <img v-if="langType ==='ms_MY'" src="../../assets/images/invite/my/iocn_top@2x.png">
     </div>
     <div class="bigBox">
       <div class="Box">
@@ -15,28 +15,28 @@
           <div class="inviteBox">
             <ul class="inviteWay">
               <li class="whatApp" @click="shareChannel('Whatsapp')">
-                <img src="../../assets/images/WSAPP@2x.png" alt="">
+                <img src="../../assets/images/invite/WSAPP@2x.png">
               </li>
               <li class="faceBook" @click="shareChannel('Facebook')">
-                <img src="../../assets/images/FB@2x.png" alt="">
+                <img src="../../assets/images/invite/FB@2x.png">
               </li>
               <li class="wechat" @click="shareChannel('Wechat')">
-                <img src="../../assets/images/WC@2x.png" alt="">
+                <img src="../../assets/images/invite/WC@2x.png">
               </li>
               <li class="message" @click="shareChannel('Messenger')">
-                <img src="../../assets/images/MEs@2x.png" alt="">
+                <img src="../../assets/images/invite/MEs@2x.png">
               </li>
               <li class="Circle" @click="shareChannel('WechatMoments')">
-                <img src="../../assets/images/mmt@2x.png" alt="">
+                <img src="../../assets/images/invite/mmt@2x.png">
               </li>
               <li class="more" @click="shareChannel('all')">
-                <img src="../../assets/images/more@2x.png" alt="">
+                <img src="../../assets/images/invite/more@2x.png">
               </li>
             </ul>
             <h1 class="and">{{$t("message.money.and")}}</h1>
             <div class="qrcodeBox">
               <img v-if="userstate === '1'&&loginFlag" :src="shareqrcode">
-              <img v-if="!loginFlag" src="../../assets/images/icon.png">
+              <img v-if="!loginFlag" src="../../assets/images/invite/icon.png">
               <p>{{$t("message.money.tips")}}</p>
             </div>
           </div>
@@ -51,34 +51,34 @@
             </div>
             <h3 v-else @click="loginApp()">{{$t("message.money.loginAcquisition")}}</h3>
           </div>
-          <h4 class="howUse" @click="mask=true"><img src="../../assets/images/tips@2x.png"> {{$t("message.money.howUse")}}</h4>
+          <h4 class="howUse" @click="mask=true"><img src="../../assets/images/invite/tips@2x.png"> {{$t("message.money.howUse")}}</h4>
         </div>
         <div class="step">
           <h3><em>3</em>{{$t("message.money.stepTitle_three")}}</h3>
           <p>{{$t("message.money.stepText_three")}}</p>
-          <img class="stepImg" src="../../assets/images/003@2x.png" alt="">
+          <img class="stepImg" src="../../assets/images/invite/003@2x.png">
         </div>
         <div class="step">
           <h3><em>4</em>{{$t("message.money.stepTitle_four")}}</h3>
           <p>{{$t("message.money.stepText_four")}}</p>
-          <img v-if="langType ==='en_US'" class="stepImg" src="../../assets/images/en/004@2x.png" alt="">
-          <img v-if="langType ==='zh_CN'" class="stepImg" src="../../assets/images/cn/004@2x.png" alt="">
-          <img v-if="langType ==='ms_MY'" class="stepImg" src="../../assets/images/my/004@2x.png" alt="">
+          <img v-if="langType ==='en_US'" class="stepImg" src="../../assets/images/invite/en/004@2x.png">
+          <img v-if="langType ==='zh_CN'" class="stepImg" src="../../assets/images/invite/cn/004@2x.png">
+          <img v-if="langType ==='ms_MY'" class="stepImg" src="../../assets/images/invite/my/004@2x.png">
         </div>
         <div class="step">
           <h3><em>5</em>{{$t("message.money.stepTitle_five")}}</h3>
           <p>{{$t("message.money.stepText_five")}}</p>
-          <img class="stepImg" src="../../assets/images/005@2x.png" alt="">
+          <img class="stepImg" src="../../assets/images/invite/005@2x.png">
 
-          <img v-if="langType ==='en_US'" class="Chart" src="../../assets/images/en/Chart@2x.png" alt="">
-          <img v-if="langType ==='zh_CN'" class="Chart" src="../../assets/images/cn/Chart@2x.png" alt="">
-          <img v-if="langType ==='ms_MY'" class="Chart" src="../../assets/images/my/Chart@2x.png" alt="">
+          <img v-if="langType ==='en_US'" class="Chart" src="../../assets/images/invite/en/Chart@2x.png">
+          <img v-if="langType ==='zh_CN'" class="Chart" src="../../assets/images/invite/cn/Chart@2x.png">
+          <img v-if="langType ==='ms_MY'" class="Chart" src="../../assets/images/invite/my/Chart@2x.png">
 
-          <img class="arrows" src="../../assets/images/Rectangle6@2x.png" alt="">
+          <img class="arrows" src="../../assets/images/invite/Rectangle6@2x.png">
 
-          <img @click="shareChannel('all')" v-if="langType ==='en_US'" class="inviteButton" src="../../assets/images/en/Buttonbig@2x.png" alt="">
-          <img @click="shareChannel('all')" v-if="langType ==='zh_CN'" class="inviteButton" src="../../assets/images/cn/Buttonbig@2x.png" alt="">
-          <img @click="shareChannel('all')" v-if="langType ==='ms_MY'" class="inviteButton" src="../../assets/images/my/Buttonbig@2x.png" alt="">
+          <img @click="shareChannel('all')" v-if="langType ==='en_US'" class="inviteButton" src="../../assets/images/invite/en/Buttonbig@2x.png">
+          <img @click="shareChannel('all')" v-if="langType ==='zh_CN'" class="inviteButton" src="../../assets/images/invite/cn/Buttonbig@2x.png">
+          <img @click="shareChannel('all')" v-if="langType ==='ms_MY'" class="inviteButton" src="../../assets/images/invite/my/Buttonbig@2x.png">
         </div>
       </div>
     </div>
@@ -87,10 +87,10 @@
     </div>
     <div v-if="mask" class="mask" @touchmove.prevent></div>
     <div v-if="mask" class="howUseBox" @touchmove.prevent>
-      <img v-if="langType ==='en_US'" class="inviteButton" src="../../assets/images/en/Group3@2x.png" alt="">
-      <img v-if="langType ==='zh_CN'" class="inviteButton" src="../../assets/images/cn/Group3@2x.png" alt="">
-      <img v-if="langType ==='ms_MY'" class="inviteButton" src="../../assets/images/my/Group3@2x.png" alt="">
-      <img class="closeBox" src="../../assets/images/closeBox@2x.png" @click="mask=false">
+      <img v-if="langType ==='en_US'" class="inviteButton" src="../../assets/images/invite/en/Group3@2x.png">
+      <img v-if="langType ==='zh_CN'" class="inviteButton" src="../../assets/images/invite/cn/Group3@2x.png">
+      <img v-if="langType ==='ms_MY'" class="inviteButton" src="../../assets/images/invite/my/Group3@2x.png">
+      <img class="closeBox" src="../../assets/images/invite/closeBox@2x.png" @click="mask=false">
     </div>
     <v-footer></v-footer>
   </div>

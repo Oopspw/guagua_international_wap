@@ -9,7 +9,7 @@ const store = new Vuex.Store({
     cid: '1',
     userId: '',
     status: '104',
-    pageType: 1,
+    pageType: 4,
     langType: 'zh_CN',
     selected: [],
     selectType: '',

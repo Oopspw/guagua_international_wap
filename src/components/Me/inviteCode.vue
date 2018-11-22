@@ -1,6 +1,5 @@
 <template>
   <div v-title="$route.meta.title">
-    <v-head></v-head>
     <input v-if="langType==='en_US'" type="number" placeholder="Your firend's Invitation Code" v-model="codeValue" maxlength="8">
     <input v-else-if="langType==='zh_CN'" type="number" placeholder="请输入您好友的邀请码" v-model="codeValue" maxlength="8">
     <input v-else type="number" placeholder="Kod jemputan rakan anda" v-model="codeValue" maxlength="8">
@@ -12,13 +11,10 @@
       <p>{{warn_content}}</p>
     </div>
     <div class="mask" v-if="showFlag"></div>
-    <v-footer></v-footer>
   </div>
 </template>
 
 <script>
-import head from '../Modules/head'
-import footer from '../Modules/footer'
 import { Indicator } from 'mint-ui'
 export default {
   name: 'inviteCode',
@@ -37,10 +33,6 @@ export default {
       langType: 'en_US',
       showFlag: false
     }
-  },
-  components: {
-    vHead: head,
-    vFooter: footer
   },
   mounted() {
     document.getElementsByTagName('body')[0].className = 'inviteCode'

@@ -32,6 +32,7 @@ export default {
         url: url,
         data: JSON.stringify(data),
         dataType: 'json',
+        contentType: 'application/json',
         success: function (res) {
           if (res.code === 1000 || res.code === '1000') {
             if (callback) {

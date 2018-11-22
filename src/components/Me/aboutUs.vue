@@ -1,29 +1,21 @@
 <template>
   <div v-title="$route.meta.title">
-    <v-head></v-head>
     <div class="about">
       <img class="readWard" src="../../assets/images/Readward.png">
       <h1 class="Rtitle">Readward</h1>
       <h3>{{$t("message.aboutUs.Notice")}}</h3>
       <p>{{$t("message.aboutUs.noticeContent")}}</p>
     </div>
-    <v-footer></v-footer>
   </div>
 </template>
 
 <script>
-import head from '../Modules/head'
-import footer from '../Modules/footer'
 export default {
   name: 'aboutUs',
   data() {
     return {
       langType: 'en_US'
     }
-  },
-  components: {
-    vHead: head,
-    vFooter: footer
   },
   mounted() {
     document.getElementsByTagName('body')[0].className = 'aboutUs'
