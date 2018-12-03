@@ -13,13 +13,13 @@
             <div class="facebook">
               <img src="../../assets/images/My/Facebook@2x.png" alt="">
             </div>
-            <div class="google g-signin2" data-theme="dark" data-onsuccess="onSignIn">
+            <div class="google">
               <img src="../../assets/images/My/Google@2x.png" alt="">
+              <div id="google-signin-button"></div>
             </div>
           </div>
         </div>
       </div>
-      <!-- <div  data-theme="dark"></div> -->
       <!-- 登录状态 -->
       <div class="isLoad">
 
@@ -70,8 +70,29 @@ export default {
     } else {
       this.getMyPageMenu()
     }
+    // 渲染
+    gapi.load('auth2', function() {})
+    gapi.signin2.render('google-signin-button', {
+      onsuccess: this.onSignIn
+    })
   },
   methods: {
+    // 谷歌登录获取数据
+    onSignIn(user) {
+      const profile = user.getBasicProfile()
+      // 客户端需要用到的数据
+      // Useful data for your client-side scripts:
+      console.log('ID: ' + profile.getId()) // 不能直接发送至服务器 Don't send this directly to your server!
+      console.log('Full Name: ' + profile.getName())
+      console.log('Given Name: ' + profile.getGivenName())
+      console.log('Family Name: ' + profile.getFamilyName())
+      console.log('Image URL: ' + profile.getImageUrl())
+      console.log('Email: ' + profile.getEmail())
+
+      // The ID token you need to pass to your backend:
+      var id_token = user.getAuthResponse().id_token
+      console.log('ID Token: ' + id_token)
+    },
     getMyPageMenu() {
       let url = this.url
       let data = {
@@ -154,6 +175,7 @@ export default {
         }
       )
     },
+    renderButton() {},
     choosePage(page) {
       if (page === 'app_h5_interinvitationcode') {
         this.$router.push({ path: '/inviteCode' })
@@ -237,6 +259,7 @@ export default {
         display: -webkit-flex;
         .facebook {
           width: 50%;
+          position: relative;
           img {
             height: 0.66rem;
             width: 0.66rem;
@@ -246,6 +269,7 @@ export default {
         }
         .google {
           width: 50%;
+          position: relative;
           img {
             height: 0.66rem;
             width: 0.66rem;
@@ -328,6 +352,13 @@ export default {
       }
     }
   }
+}
+// 谷歌登录按钮样式
+#google-signin-button {
+  // background: rgba(255, 255, 255, 0);
+  position: absolute;
+  opacity: 0;
+  top: 0;
 }
 </style>
 

@@ -33,6 +33,14 @@ export default new Router({
       }
     },
     {
+      path: '/googleLoad',
+      name: 'googleLoad',
+      component: resolve => require(['components/Me/googleLoad.vue'], resolve),
+      meta: {
+        title: 'Me'
+      }
+    },
+    {
       path: '/aboutUs',
       name: 'aboutUs',
       component: resolve => require(['components/Me/aboutUs.vue'], resolve),
