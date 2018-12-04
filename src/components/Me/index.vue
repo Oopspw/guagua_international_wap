@@ -11,31 +11,37 @@
           <h3 class="title">Choose Login Method</h3>
           <div class="loadbox">
             <div class="facebook">
-              <img src="../../assets/images/My/Facebook@2x.png" alt="">
+              <img src="../../assets/images/My/Facebook@2x.png">
             </div>
             <div class="google">
-              <img src="../../assets/images/My/Google@2x.png" alt="">
+              <img src="../../assets/images/My/Google@2x.png">
               <div id="google-signin-button"></div>
             </div>
           </div>
         </div>
       </div>
       <!-- 登录状态 -->
-      <div class="isLoad">
-
-      </div>
+      <div class="isLoad"></div>
     </div>
     <div class="menu">
       <ul class="menuUl">
         <li class="menuLi" v-for="item in menuList" @click="choosePage(item.menucode)">
           <div class="imgBox" v-if="item.menuicon !== ''">
-            <img :src=item.menuicon>
+            <img :src="item.menuicon">
           </div>
           <div :class="item.menuicon !== ''?'contentBox':'content'">
             {{ item.menuname }}
             <!-- 描述 -->
-            <h3 class="tipContent" v-if="item.menuintro !== ''" :style="{'color': '#'+item.fontstyle}">{{ item.menuintro }}</h3>
-            <img class="arrow" v-if="item.menuintro === ''&&item.menuicon !== ''" src="../../assets/images/right@2x.png" alt="">
+            <h3
+              class="tipContent"
+              v-if="item.menuintro !== ''"
+              :style="{'color': '#'+item.fontstyle}"
+            >{{ item.menuintro }}</h3>
+            <img
+              class="arrow"
+              v-if="item.menuintro === ''&&item.menuicon !== ''"
+              src="../../assets/images/right@2x.png"
+            >
           </div>
         </li>
       </ul>
@@ -45,66 +51,66 @@
 </template>
 
 <script>
-import head from '../Modules/head'
-import footer from '../Modules/footer'
+import head from "../Modules/head";
+import footer from "../Modules/footer";
 export default {
-  name: 'userIndex',
+  name: "userIndex",
   data() {
     return {
       url: window.config.api.wapUrl,
       Infversion: window.config.api.Infversion,
       menuList: []
-    }
+    };
   },
   components: {
     vHead: head,
     vFooter: footer
   },
   mounted() {
-    document.getElementsByTagName('body')[0].className = 'userIndex'
+    document.getElementsByTagName("body")[0].className = "userIndex";
     // 判断是否有缓存的列表数据 如果有则使用缓存 否则调用接口访问
-    this.getMyInfo()
+    this.getMyInfo();
     if (sessionStorage.menuList !== undefined) {
-      this.menuList = JSON.parse(sessionStorage.menuList)
-      console.log(this.menuList)
+      this.menuList = JSON.parse(sessionStorage.menuList);
+      console.log(this.menuList);
     } else {
-      this.getMyPageMenu()
+      this.getMyPageMenu();
     }
     // 渲染
-    gapi.load('auth2', function() {})
-    gapi.signin2.render('google-signin-button', {
+    gapi.load("auth2", function() {});
+    gapi.signin2.render("google-signin-button", {
       onsuccess: this.onSignIn
-    })
+    });
   },
   methods: {
     // 谷歌登录获取数据
     onSignIn(user) {
-      const profile = user.getBasicProfile()
+      const profile = user.getBasicProfile();
       // 客户端需要用到的数据
       // Useful data for your client-side scripts:
-      console.log('ID: ' + profile.getId()) // 不能直接发送至服务器 Don't send this directly to your server!
-      console.log('Full Name: ' + profile.getName())
-      console.log('Given Name: ' + profile.getGivenName())
-      console.log('Family Name: ' + profile.getFamilyName())
-      console.log('Image URL: ' + profile.getImageUrl())
-      console.log('Email: ' + profile.getEmail())
+      console.log("ID: " + profile.getId()); // 不能直接发送至服务器 Don't send this directly to your server!
+      console.log("Full Name: " + profile.getName());
+      console.log("Given Name: " + profile.getGivenName());
+      console.log("Family Name: " + profile.getFamilyName());
+      console.log("Image URL: " + profile.getImageUrl());
+      console.log("Email: " + profile.getEmail());
 
       // The ID token you need to pass to your backend:
-      var id_token = user.getAuthResponse().id_token
-      console.log('ID Token: ' + id_token)
+      var id_token = user.getAuthResponse().id_token;
+      console.log("ID Token: " + id_token);
     },
     getMyPageMenu() {
-      let url = this.url
+      let url = this.url;
       let data = {
-        isexamine: '3',
-        userid: '335453',
-        appv: '1.0',
+        isexamine: "3",
+        userid: "335453",
+        appv: "1.0",
         i18n: this.$store.state.langType,
-        UID: '1542770516349',
-        Infversion: '1.0',
-        Method: 'GetMyPageMenu',
-        Key: 'oRP2KNBzS6/eHUzrHl29T7z4zRnqZLBPbzn2gcrOMrCJ2LtbX5agPA=='
-      }
+        UID: "1542770516349",
+        Infversion: "1.0",
+        Method: "GetMyPageMenu",
+        Key: "oRP2KNBzS6/eHUzrHl29T7z4zRnqZLBPbzn2gcrOMrCJ2LtbX5agPA=="
+      };
       // let datas = JSON.stringify(data)
       // console.log(datas)
       // this.$axios
@@ -126,29 +132,29 @@ export default {
         url,
         data,
         res => {
-          console.log(res)
-          this.menuList = res.data
+          console.log(res);
+          this.menuList = res.data;
           // 将菜单列表进行缓存
-          sessionStorage.menuList = JSON.stringify(res.data)
+          sessionStorage.menuList = JSON.stringify(res.data);
         },
         err => {
-          console.log(err)
+          console.log(err);
         }
-      )
+      );
     },
     getMyInfo() {
-      let url = this.url
+      let url = this.url;
       let data = {
-        isexamine: '3',
-        userid: '335453',
-        appv: '1.0',
+        isexamine: "3",
+        userid: "335453",
+        appv: "1.0",
         i18n: this.$store.state.langType,
-        UID: '1542770516349',
-        Infversion: '1.0',
-        Method: 'GetMyInfo',
-        Key: 'oRP2KNBzS6/eHUzrHl29T7z4zRnqZLBPbzn2gcrOMrCJ2LtbX5agPA=='
-      }
-      let datas = JSON.stringify(data)
+        UID: "1542770516349",
+        Infversion: "1.0",
+        Method: "GetMyInfo",
+        Key: "oRP2KNBzS6/eHUzrHl29T7z4zRnqZLBPbzn2gcrOMrCJ2LtbX5agPA=="
+      };
+      let datas = JSON.stringify(data);
       // this.$axios
       //   .post(this.url, JSON.stringify(data), {
       //     timeout: 60 * 1000
@@ -168,24 +174,24 @@ export default {
         url,
         data,
         res => {
-          console.log(res)
+          console.log(res);
         },
         err => {
-          console.log(err)
+          console.log(err);
         }
-      )
+      );
     },
     renderButton() {},
     choosePage(page) {
-      if (page === 'app_h5_interinvitationcode') {
-        this.$router.push({ path: '/inviteCode' })
-      } else if (page === '') {
-      } else if (page === 'app_aboutsharemoney') {
-        this.$router.push({ path: '/aboutUs' })
+      if (page === "app_h5_interinvitationcode") {
+        this.$router.push({ path: "/inviteCode" });
+      } else if (page === "") {
+      } else if (page === "app_aboutsharemoney") {
+        this.$router.push({ path: "/aboutUs" });
       }
     }
   }
-}
+};
 </script>
 
 <style lang="less">
@@ -230,7 +236,7 @@ export default {
         position: relative;
       }
       .title::before {
-        content: '';
+        content: "";
         position: absolute;
         width: 0.35rem;
         height: 1px;
@@ -241,7 +247,7 @@ export default {
         -webkit-transform: translateY(-50%);
       }
       .title::after {
-        content: '';
+        content: "";
         position: absolute;
         width: 0.35rem;
         height: 1px;
