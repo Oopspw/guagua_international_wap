@@ -4,7 +4,7 @@ import VueResource from 'vue-resource'
 Vue.use(Router)
 Vue.use(VueResource)
 export default new Router({
-  mode: 'hash',
+  mode: 'history',
   routes: [
     // 功能组件
     {
@@ -36,6 +36,15 @@ export default new Router({
       path: '/googleLoad',
       name: 'googleLoad',
       component: resolve => require(['components/Me/googleLoad.vue'], resolve),
+      meta: {
+        title: 'Me'
+      }
+    },
+    {
+      path: '/facebookLoad',
+      name: 'facebookLoad',
+      component: resolve =>
+        require(['components/Me/facebookLoad.vue'], resolve),
       meta: {
         title: 'Me'
       }

@@ -9,17 +9,16 @@
 <style>
 </style>
 <script>
-
-import head from '../Modules/head'
-import footer from '../Modules/footer'
-import artContent from '../../components/Offers/content'
+import head from "../Modules/head";
+import footer from "../Modules/footer";
+import artContent from "../../components/Offers/content";
 export default {
-  name: 'footer',
+  name: "footer",
   data() {
     return {
       url:
-        'http://app-articledetail.zongmiaoqiuxu.cn/app-articledetail/aarticle?userid=335453&articleid=16037'
-    }
+        "http://app-articledetail.zongmiaoqiuxu.cn/app-articledetail/aarticle?userid=335453&articleid=16037"
+    };
   },
   components: {
     vHead: head,
@@ -27,5 +26,5 @@ export default {
     // 文章内容
     vHtmlPanel: artContent
   }
-}
+};
 </script>

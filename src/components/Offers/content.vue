@@ -13,43 +13,43 @@ export default {
   },
   data() {
     return {
-      content: ''
-    }
+      content: ""
+    };
   },
   watch: {
     url(value) {
-      this.load(value)
+      this.load(value);
     }
   },
   mounted() {
-    this.load(this.url)
+    this.load(this.url);
   },
   methods: {
     // 提示框公用方法
     showWarnTips(text) {
-      this.warn_type = 1
-      this.warn_content = text
+      this.warn_type = 1;
+      this.warn_content = text;
       setTimeout(() => {
-        this.warn_type = 0
-      }, 2000)
+        this.warn_type = 0;
+      }, 2000);
     },
     load(url) {
       if (url && url.length > 0) {
         // 加载中
-        let param = {}
+        let param = {};
         this.$axios
           .get(url, param)
           .then(response => {
             // 处理HTML显示
-            this.content = response.data
+            this.content = response.data;
           })
           .catch(() => {
-            this.showWarnTips('加载失败')
-          })
+            this.showWarnTips("加载失败");
+          });
       }
     }
   }
-}
+};
 </script>
 <style lang="less">
 .contentBody {
