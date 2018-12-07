@@ -1,6 +1,6 @@
 <template>
   <div v-title="$route.meta.title">
-    <div class="head">
+    <div class="heads">
       <!-- {{ $route.meta.title }} -->
       <img class="invite" src="../../assets/images/header/icon_invite@2x.png" alt="">
       <img class="indexTitle" src="../../assets/images/header/Readward@2x.png" alt="">
@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: 'head',
+  name: 'heads',
   data() {
     return {}
   }
@@ -20,7 +20,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.head {
+.heads {
   position: fixed;
   width: 100vw;
   height: 1rem;

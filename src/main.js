@@ -18,6 +18,8 @@ import Axios from 'axios'
 import en from '../static/lang/en_US'
 import zh from '../static/lang/zh_CN'
 import ms from '../static/lang/ms_MY'
+import SocialSharing from 'vue-social-sharing'
+Vue.use(SocialSharing)
 Vue.prototype.$axios = Axios
 Vue.use(VueI18n)
 const i18n = new VueI18n({

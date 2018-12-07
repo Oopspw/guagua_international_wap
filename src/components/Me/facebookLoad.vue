@@ -31,8 +31,7 @@ export default {
       provider.login().then(
         res => {
           provider.api("me").then(r => {
-            alert(r.name);
-            console.log(r.name);
+            console.log(r);
           });
           console.log(res);
         },

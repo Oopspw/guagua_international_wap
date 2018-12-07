@@ -3,33 +3,54 @@
     <div class="nullBox"></div>
     <div class="footer" v-if="this.$store.state.langType === 'zh_CN'">
       <div class="chooseBox" @click="checkPage(1)">
-        <img v-if="this.$store.state.pageType === 1" src="../../assets/images/footer/zh/2_1task@2x.png">
+        <img
+          v-if="this.$store.state.pageType === 1"
+          src="../../assets/images/footer/zh/2_1task@2x.png"
+        >
         <img v-else src="../../assets/images/footer/zh/2_task@2x.png">
       </div>
       <div class="chooseBox" @click="checkPage(2)">
-        <img v-if="this.$store.state.pageType === 2" src="../../assets/images/footer/zh/2_1Invite@2x.png">
+        <img
+          v-if="this.$store.state.pageType === 2"
+          src="../../assets/images/footer/zh/2_1Invite@2x.png"
+        >
         <img v-else src="../../assets/images/footer/zh/2_Invite@2x.png">
       </div>
       <div class="chooseBox" @click="checkPage(3)">
-        <img v-if="this.$store.state.pageType === 3" src="../../assets/images/footer/zh/2_1Rewards@2x.png">
+        <img
+          v-if="this.$store.state.pageType === 3"
+          src="../../assets/images/footer/zh/2_1Rewards@2x.png"
+        >
         <img v-else src="../../assets/images/footer/zh/2_Rewards@2x.png">
       </div>
       <div class="chooseBox" @click="checkPage(4)">
-        <img v-if="this.$store.state.pageType === 4" src="../../assets/images/footer/zh/2_1Me@2x.png">
+        <img
+          v-if="this.$store.state.pageType === 4"
+          src="../../assets/images/footer/zh/2_1Me@2x.png"
+        >
         <img v-else src="../../assets/images/footer/zh/2_Me@2x.png">
       </div>
     </div>
     <div class="footer" v-if="this.$store.state.langType === 'en_US'">
       <div class="chooseBox" @click="checkPage(1)">
-        <img v-if="this.$store.state.pageType === 1" src="../../assets/images/footer/en/task@2x.png">
+        <img
+          v-if="this.$store.state.pageType === 1"
+          src="../../assets/images/footer/en/task@2x.png"
+        >
         <img v-else src="../../assets/images/footer/en/task2@2x.png">
       </div>
       <div class="chooseBox" @click="checkPage(2)">
-        <img v-if="this.$store.state.pageType === 2" src="../../assets/images/footer/en/Invite@2x.png">
+        <img
+          v-if="this.$store.state.pageType === 2"
+          src="../../assets/images/footer/en/Invite@2x.png"
+        >
         <img v-else src="../../assets/images/footer/en/Invite2@2x.png">
       </div>
       <div class="chooseBox" @click="checkPage(3)">
-        <img v-if="this.$store.state.pageType === 3" src="../../assets/images/footer/en/Rewards@2x.png">
+        <img
+          v-if="this.$store.state.pageType === 3"
+          src="../../assets/images/footer/en/Rewards@2x.png"
+        >
         <img v-else src="../../assets/images/footer/en/Rewards2@2x.png">
       </div>
       <div class="chooseBox" @click="checkPage(4)">
@@ -39,19 +60,31 @@
     </div>
     <div class="footer" v-if="this.$store.state.langType === 'ms_MY'">
       <div class="chooseBox" @click="checkPage(1)">
-        <img v-if="this.$store.state.pageType === 1" src="../../assets/images/footer/ms/Tawaran@2x.png">
+        <img
+          v-if="this.$store.state.pageType === 1"
+          src="../../assets/images/footer/ms/Tawaran@2x.png"
+        >
         <img v-else src="../../assets/images/footer/ms/2Tawaran@2x.png">
       </div>
       <div class="chooseBox" @click="checkPage(2)">
-        <img v-if="this.$store.state.pageType === 2" src="../../assets/images/footer/ms/Jemputan@2x.png">
+        <img
+          v-if="this.$store.state.pageType === 2"
+          src="../../assets/images/footer/ms/Jemputan@2x.png"
+        >
         <img v-else src="../../assets/images/footer/ms/2Jemputan@2x .png">
       </div>
       <div class="chooseBox" @click="checkPage(3)">
-        <img v-if="this.$store.state.pageType === 3" src="../../assets/images/footer/ms/Ganjaran@2x.png">
+        <img
+          v-if="this.$store.state.pageType === 3"
+          src="../../assets/images/footer/ms/Ganjaran@2x.png"
+        >
         <img v-else src="../../assets/images/footer/ms/2Ganjaran@2x.png">
       </div>
       <div class="chooseBox" @click="checkPage(4)">
-        <img v-if="this.$store.state.pageType === 4" src="../../assets/images/footer/ms/Saya@2x.png">
+        <img
+          v-if="this.$store.state.pageType === 4"
+          src="../../assets/images/footer/ms/Saya@2x.png"
+        >
         <img v-else src="../../assets/images/footer/ms/2Saya@2x.png">
       </div>
     </div>
@@ -60,26 +93,26 @@
 
 <script>
 export default {
-  name: 'footer',
+  name: "foots",
   data() {
-    return {}
+    return {};
   },
   mounted() {},
   methods: {
     checkPage(type) {
-      this.$store.state.pageType = type
+      this.$store.state.pageType = type;
       if (this.$store.state.pageType === 1) {
-        this.$router.push({ path: '/articleList' })
+        this.$router.push({ path: "/articleList" });
       } else if (this.$store.state.pageType === 2) {
-        this.$router.push({ path: '/money' })
+        this.$router.push({ path: "/money" });
       } else if (this.$store.state.pageType === 3) {
-        this.$router.push({ path: '/exchange' })
+        this.$router.push({ path: "/exchange" });
       } else {
-        this.$router.push({ path: '/userIndex' })
+        this.$router.push({ path: "/userIndex" });
       }
     }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

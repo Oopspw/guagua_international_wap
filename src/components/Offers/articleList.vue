@@ -1,6 +1,6 @@
 <template>
   <div v-title="$route.meta.title">
-    <v-head></v-head>
+    <v-Heads></v-Heads>
     <!-- 文章列表 -->
     <div class="articleList">
       <ul class="articleUl">
@@ -18,13 +18,13 @@
         <!-- 三图文章 -->
       </ul>
     </div>
-    <v-footer></v-footer>
+    <v-foots></v-foots>
   </div>
 </template>
 
 <script>
-import head from "../Modules/head";
-import footer from "../Modules/footer";
+import heads from "../Modules/heads";
+import foots from "../Modules/foots";
 export default {
   name: "articleList",
   data() {
@@ -33,8 +33,8 @@ export default {
     };
   },
   components: {
-    vHead: head,
-    vFooter: footer
+    vHeads: heads,
+    vFoots: foots
   }
 };
 </script>

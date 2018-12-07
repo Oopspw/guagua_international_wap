@@ -1,9 +1,12 @@
 <template>
   <div v-title="$route.meta.title">
-    <v-head></v-head>
-    <img class="bankLogo" src="../../assets/images/Maybank@2x.png" alt="">
+    <v-Heads></v-Heads>
+    <img class="bankLogo" src="../../assets/images/Maybank@2x.png" alt>
     <h3 class="bankName">{{$t("message.extract.bankName")}}</h3>
-    <p class="bankMoney"><span>RM</span> {{money}}</p>
+    <p class="bankMoney">
+      <span>RM</span>
+      {{money}}
+    </p>
     <div class="showContent">
       <p class="left">{{$t("message.extract.ConsumeCoins")}}</p>
       <p class="right">{{money * 1000}}</p>
@@ -20,28 +23,103 @@
         </li>
         <li>
           <h2 class="left">{{$t("message.extract.AccountNumber")}}</h2>
-          <input v-if="langType==='en_US'&&eyes==='show'" class="right" type="text" v-model="accountNumber" placeholder="Please check the account carefully">
-          <input v-else-if="langType==='en_US'&&eyes!=='show'" class="right" type="button" @click="showAccountNumber()" v-model="accountNumber" placeholder="Please check the account carefully">
-          <input v-else-if="langType==='zh_CN'&&eyes==='show'" class="right" type="text" v-model="accountNumber" placeholder="请仔细核对账号">
-          <input v-else-if="langType==='zh_CN'&&eyes!=='show'" class="right" type="button" @click="showAccountNumber()" v-model="accountNumber" placeholder="请仔细核对账号">
-          <input v-else-if="langType==='ms_MY'&&eyes==='show'" class="right" type="text" v-model="accountNumber" placeholder="Sila semak nombor akaun">
-          <input v-else-if="langType==='ms_MY'&&eyes!=='show'" class="right" type="button" @click="showAccountNumber()" v-model="accountNumber" placeholder="Sila semak nombor akaun">
+          <input
+            v-if="langType==='en_US'&&eyes==='show'"
+            class="right"
+            type="text"
+            v-model="accountNumber"
+            placeholder="Please check the account carefully"
+          >
+          <input
+            v-else-if="langType==='en_US'&&eyes!=='show'"
+            class="right"
+            type="button"
+            @click="showAccountNumber()"
+            v-model="accountNumber"
+            placeholder="Please check the account carefully"
+          >
+          <input
+            v-else-if="langType==='zh_CN'&&eyes==='show'"
+            class="right"
+            type="text"
+            v-model="accountNumber"
+            placeholder="请仔细核对账号"
+          >
+          <input
+            v-else-if="langType==='zh_CN'&&eyes!=='show'"
+            class="right"
+            type="button"
+            @click="showAccountNumber()"
+            v-model="accountNumber"
+            placeholder="请仔细核对账号"
+          >
+          <input
+            v-else-if="langType==='ms_MY'&&eyes==='show'"
+            class="right"
+            type="text"
+            v-model="accountNumber"
+            placeholder="Sila semak nombor akaun"
+          >
+          <input
+            v-else-if="langType==='ms_MY'&&eyes!=='show'"
+            class="right"
+            type="button"
+            @click="showAccountNumber()"
+            v-model="accountNumber"
+            placeholder="Sila semak nombor akaun"
+          >
           <div class="eyes" @click="showAccountNumber()">
-            <img v-if="eyes==='show'" src="../../assets/images/visible@2x.png" alt="">
-            <img class="hideAN" v-else src="../../assets/images/invisible@2x.png" alt="">
+            <img v-if="eyes==='show'" src="../../assets/images/visible@2x.png" alt>
+            <img class="hideAN" v-else src="../../assets/images/invisible@2x.png" alt>
           </div>
         </li>
         <li>
           <h2 class="left">{{$t("message.extract.RecipientsName")}}</h2>
-          <input v-if="langType==='en_US'" class="right" type="text" v-model="userName" placeholder="Please enter your name">
-          <input v-else-if="langType==='zh_CN'" class="right" type="text" v-model="userName" placeholder="请输入您的姓名">
-          <input v-else class="right" type="text" v-model="userName" placeholder="Masukkan nama akaun">
+          <input
+            v-if="langType==='en_US'"
+            class="right"
+            type="text"
+            v-model="userName"
+            placeholder="Please enter your name"
+          >
+          <input
+            v-else-if="langType==='zh_CN'"
+            class="right"
+            type="text"
+            v-model="userName"
+            placeholder="请输入您的姓名"
+          >
+          <input
+            v-else
+            class="right"
+            type="text"
+            v-model="userName"
+            placeholder="Masukkan nama akaun"
+          >
         </li>
         <li>
           <h2 class="left">{{$t("message.extract.PhoneNumber")}}</h2>
-          <input v-if="langType==='en_US'" class="right" type="number" v-model="mobile" placeholder="Please enter your phone number">
-          <input v-else-if="langType==='zh_CN'" class="right" type="number" v-model="mobile" placeholder="请输入您的手机号">
-          <input v-else class="right" type="number" v-model="mobile" placeholder="Masukkan nombor telefon bimbit">
+          <input
+            v-if="langType==='en_US'"
+            class="right"
+            type="number"
+            v-model="mobile"
+            placeholder="Please enter your phone number"
+          >
+          <input
+            v-else-if="langType==='zh_CN'"
+            class="right"
+            type="number"
+            v-model="mobile"
+            placeholder="请输入您的手机号"
+          >
+          <input
+            v-else
+            class="right"
+            type="number"
+            v-model="mobile"
+            placeholder="Masukkan nombor telefon bimbit"
+          >
         </li>
       </ul>
       <div class="buttonBox">
@@ -58,81 +136,80 @@
     <div class="warn" v-if="warn_type===1">
       <p>{{warn_content}}</p>
     </div>
-    <v-footer></v-footer>
+    <v-foots></v-foots>
   </div>
 </template>
 
 <script>
-
-import head from '../Modules/head'
-import footer from '../Modules/footer'
+import heads from "../Modules/heads";
+import foots from "../Modules/foots";
 export default {
-  name: 'extract',
+  name: "extract",
   data() {
     return {
       url: window.config.api.apiUrl,
       Infversion: window.config.api.Infversion,
-      userid: '',
-      token: '',
-      appv: '',
-      initNumber: '',
-      accountNumber: '',
-      time: '',
-      mobile: '',
-      userName: '',
+      userid: "",
+      token: "",
+      appv: "",
+      initNumber: "",
+      accountNumber: "",
+      time: "",
+      mobile: "",
+      userName: "",
       money: 0,
-      warn_content: '',
+      warn_content: "",
       warn_type: 0,
-      langType: 'en_US',
-      eyes: 'hide'
-    }
+      langType: "en_US",
+      eyes: "hide"
+    };
   },
   components: {
-    vHead: head,
-    vFooter: footer
+    vHeads: heads,
+    vFoots: foots
   },
   mounted() {
-    document.getElementsByTagName('body')[0].className = 'extract'
-    this.userid = sessionStorage.userid
-    this.token = sessionStorage.token
-    this.appv = sessionStorage.appv
-    this.time = sessionStorage.time
-    this.mobile = sessionStorage.mobile
-    this.money = sessionStorage.money
-    this.initNumber = sessionStorage.bankaccountnumber
-    this.userName = sessionStorage.bankaccountname
+    document.getElementsByTagName("body")[0].className = "extract";
+    this.userid = sessionStorage.userid;
+    this.token = sessionStorage.token;
+    this.appv = sessionStorage.appv;
+    this.time = sessionStorage.time;
+    this.mobile = sessionStorage.mobile;
+    this.money = sessionStorage.money;
+    this.initNumber = sessionStorage.bankaccountnumber;
+    this.userName = sessionStorage.bankaccountname;
     if (
-      this.initNumber == '' ||
+      this.initNumber == "" ||
       this.initNumber == undefined ||
       this.initNumber == null
     ) {
-      this.accountNumber = ''
-      this.eyes = 'show'
+      this.accountNumber = "";
+      this.eyes = "show";
     } else {
       if (this.initNumber.length > 8) {
         this.accountNumber =
-          this.initNumber.substr(0, 4) + '****' + this.initNumber.substr(-4)
+          this.initNumber.substr(0, 4) + "****" + this.initNumber.substr(-4);
       } else {
-        this.accountNumber = this.initNumber.substr(0, 1) + '****'
+        this.accountNumber = this.initNumber.substr(0, 1) + "****";
       }
     }
-    this.langType = sessionStorage.langType
+    this.langType = sessionStorage.langType;
     if (
       this.langType === null ||
       this.langType === undefined ||
-      this.langType === 'en_US'
+      this.langType === "en_US"
     ) {
-      this.langType = 'en_US'
-      this.$i18n.locale = 'en_US'
-      document.title = 'Withdraw'
-    } else if (this.langType === 'zh_CN') {
-      this.langType = 'zh_CN'
-      this.$i18n.locale = 'zh_CN'
-      document.title = '兑换'
+      this.langType = "en_US";
+      this.$i18n.locale = "en_US";
+      document.title = "Withdraw";
+    } else if (this.langType === "zh_CN") {
+      this.langType = "zh_CN";
+      this.$i18n.locale = "zh_CN";
+      document.title = "兑换";
     } else {
-      this.langType = 'ms_MY'
-      this.$i18n.locale = 'ms_MY'
-      document.title = 'Pengeluaran Tunai'
+      this.langType = "ms_MY";
+      this.$i18n.locale = "ms_MY";
+      document.title = "Pengeluaran Tunai";
     }
   },
   methods: {
@@ -155,68 +232,70 @@ export default {
     //   }
     // },
     showAccountNumber() {
-      if (this.eyes === 'show') {
-        this.eyes = 'hide'
-        this.initNumber = this.accountNumber
+      if (this.eyes === "show") {
+        this.eyes = "hide";
+        this.initNumber = this.accountNumber;
         if (
-          this.initNumber == '' ||
+          this.initNumber == "" ||
           this.initNumber == undefined ||
           this.initNumber == null
         ) {
-          this.accountNumber = ''
+          this.accountNumber = "";
         } else {
           if (this.initNumber.length > 8) {
             this.accountNumber =
-              this.initNumber.substr(0, 4) + '****' + this.initNumber.substr(-4)
+              this.initNumber.substr(0, 4) +
+              "****" +
+              this.initNumber.substr(-4);
           } else {
-            this.accountNumber = this.initNumber.substr(0, 1) + '****'
+            this.accountNumber = this.initNumber.substr(0, 1) + "****";
           }
         }
       } else {
-        this.eyes = 'show'
-        this.accountNumber = this.initNumber
+        this.eyes = "show";
+        this.accountNumber = this.initNumber;
       }
     },
     commitInfo() {
-      if (this.eyes === 'show') {
-        this.initNumber = this.accountNumber
+      if (this.eyes === "show") {
+        this.initNumber = this.accountNumber;
       }
       if (
-        this.initNumber === '' ||
-        this.mobile === '' ||
-        this.userName === ''
+        this.initNumber === "" ||
+        this.mobile === "" ||
+        this.userName === ""
       ) {
         // Please enter your valid email address
-        if (this.langType === 'en_US') {
-          this.showWarnTips('Please fill in the valid withdrawal information')
-        } else if (this.langType === 'zh_CN') {
-          this.showWarnTips('请填写完整有效的提现信息')
+        if (this.langType === "en_US") {
+          this.showWarnTips("Please fill in the valid withdrawal information");
+        } else if (this.langType === "zh_CN") {
+          this.showWarnTips("请填写完整有效的提现信息");
         } else {
-          this.showWarnTips('Sila isi maklumat yang sah pengeluaran')
+          this.showWarnTips("Sila isi maklumat yang sah pengeluaran");
         }
-        return false
+        return false;
       }
       // return false
-      let url = this.url
+      let url = this.url;
       let data = {
         userid: this.userid,
         token: this.token,
         Infversion: this.Infversion,
         appv: this.appv,
-        exchange_type: 'bank',
+        exchange_type: "bank",
         bankaccountnumber: this.initNumber,
         bankaccountname: this.userName,
         bankphonenumber: this.mobile,
         money: this.money,
         i18n: this.langType,
-        Method: 'SaveAlipayRecordWap'
-      }
+        Method: "SaveAlipayRecordWap"
+      };
       this.$apiPost(
         url,
         data,
         res => {
           // console.log(res)
-          this.showWarnTips(res.msg.substr(2))
+          this.showWarnTips(res.msg.substr(2));
           // 跳转至账本 支出项
           // localStorage.expenses = 'expenses'
           // if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
@@ -227,23 +306,23 @@ export default {
         },
         res => {
           //console.log(res)
-          this.showWarnTips(res.msg.substr(2))
+          this.showWarnTips(res.msg.substr(2));
         }
-      )
+      );
     },
     showPrecautions() {
-      document.body.scrollTop = document.documentElement.scrollTop = 1000
+      document.body.scrollTop = document.documentElement.scrollTop = 1000;
     },
     // 提示框公用方法
     showWarnTips(text) {
-      this.warn_type = 1
-      this.warn_content = text
+      this.warn_type = 1;
+      this.warn_content = text;
       setTimeout(() => {
-        this.warn_type = 0
-      }, 2000)
+        this.warn_type = 0;
+      }, 2000);
     }
   }
-}
+};
 </script>
 
 <style lang="less">

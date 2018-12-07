@@ -1,6 +1,6 @@
 <template>
   <div v-title="$route.meta.title">
-    <v-head></v-head>
+    <v-Heads></v-Heads>
     <!-- bannar 图 -->
     <div class="bannar">
       <img v-if="langType ==='en_US'" src="../../assets/images/invite/en/iocn_top@2x.png">
@@ -10,7 +10,10 @@
     <div class="bigBox">
       <div class="Box">
         <div class="step">
-          <h3><em>1</em>{{$t("message.money.stepTitle_one")}}</h3>
+          <h3>
+            <em>1</em>
+            {{$t("message.money.stepTitle_one")}}
+          </h3>
           <p>{{$t("message.money.stepText_one")}}</p>
           <div class="inviteBox">
             <ul class="inviteWay">
@@ -42,7 +45,10 @@
           </div>
         </div>
         <div class="step">
-          <h3><em>2</em>{{$t("message.money.stepTitle_two")}}</h3>
+          <h3>
+            <em>2</em>
+            {{$t("message.money.stepTitle_two")}}
+          </h3>
           <p>{{$t("message.money.stepText_two")}}</p>
           <div class="mycode">
             <div v-if="userstate === '1'&&loginFlag" class="codeBox" @click="copyCode(ggc)">
@@ -51,34 +57,85 @@
             </div>
             <h3 v-else @click="loginApp()">{{$t("message.money.loginAcquisition")}}</h3>
           </div>
-          <h4 class="howUse" @click="mask=true"><img src="../../assets/images/invite/tips@2x.png"> {{$t("message.money.howUse")}}</h4>
+          <h4 class="howUse" @click="mask=true">
+            <img src="../../assets/images/invite/tips@2x.png">
+            {{$t("message.money.howUse")}}
+          </h4>
         </div>
         <div class="step">
-          <h3><em>3</em>{{$t("message.money.stepTitle_three")}}</h3>
+          <h3>
+            <em>3</em>
+            {{$t("message.money.stepTitle_three")}}
+          </h3>
           <p>{{$t("message.money.stepText_three")}}</p>
           <img class="stepImg" src="../../assets/images/invite/003@2x.png">
         </div>
         <div class="step">
-          <h3><em>4</em>{{$t("message.money.stepTitle_four")}}</h3>
+          <h3>
+            <em>4</em>
+            {{$t("message.money.stepTitle_four")}}
+          </h3>
           <p>{{$t("message.money.stepText_four")}}</p>
-          <img v-if="langType ==='en_US'" class="stepImg" src="../../assets/images/invite/en/004@2x.png">
-          <img v-if="langType ==='zh_CN'" class="stepImg" src="../../assets/images/invite/cn/004@2x.png">
-          <img v-if="langType ==='ms_MY'" class="stepImg" src="../../assets/images/invite/my/004@2x.png">
+          <img
+            v-if="langType ==='en_US'"
+            class="stepImg"
+            src="../../assets/images/invite/en/004@2x.png"
+          >
+          <img
+            v-if="langType ==='zh_CN'"
+            class="stepImg"
+            src="../../assets/images/invite/cn/004@2x.png"
+          >
+          <img
+            v-if="langType ==='ms_MY'"
+            class="stepImg"
+            src="../../assets/images/invite/my/004@2x.png"
+          >
         </div>
         <div class="step">
-          <h3><em>5</em>{{$t("message.money.stepTitle_five")}}</h3>
+          <h3>
+            <em>5</em>
+            {{$t("message.money.stepTitle_five")}}
+          </h3>
           <p>{{$t("message.money.stepText_five")}}</p>
           <img class="stepImg" src="../../assets/images/invite/005@2x.png">
-
-          <img v-if="langType ==='en_US'" class="Chart" src="../../assets/images/invite/en/Chart@2x.png">
-          <img v-if="langType ==='zh_CN'" class="Chart" src="../../assets/images/invite/cn/Chart@2x.png">
-          <img v-if="langType ==='ms_MY'" class="Chart" src="../../assets/images/invite/my/Chart@2x.png">
-
+          
+          <img
+            v-if="langType ==='en_US'"
+            class="Chart"
+            src="../../assets/images/invite/en/Chart@2x.png"
+          >
+          <img
+            v-if="langType ==='zh_CN'"
+            class="Chart"
+            src="../../assets/images/invite/cn/Chart@2x.png"
+          >
+          <img
+            v-if="langType ==='ms_MY'"
+            class="Chart"
+            src="../../assets/images/invite/my/Chart@2x.png"
+          >
+          
           <img class="arrows" src="../../assets/images/invite/Rectangle6@2x.png">
-
-          <img @click="shareChannel('all')" v-if="langType ==='en_US'" class="inviteButton" src="../../assets/images/invite/en/Buttonbig@2x.png">
-          <img @click="shareChannel('all')" v-if="langType ==='zh_CN'" class="inviteButton" src="../../assets/images/invite/cn/Buttonbig@2x.png">
-          <img @click="shareChannel('all')" v-if="langType ==='ms_MY'" class="inviteButton" src="../../assets/images/invite/my/Buttonbig@2x.png">
+          
+          <img
+            @click="shareChannel('all')"
+            v-if="langType ==='en_US'"
+            class="inviteButton"
+            src="../../assets/images/invite/en/Buttonbig@2x.png"
+          >
+          <img
+            @click="shareChannel('all')"
+            v-if="langType ==='zh_CN'"
+            class="inviteButton"
+            src="../../assets/images/invite/cn/Buttonbig@2x.png"
+          >
+          <img
+            @click="shareChannel('all')"
+            v-if="langType ==='ms_MY'"
+            class="inviteButton"
+            src="../../assets/images/invite/my/Buttonbig@2x.png"
+          >
         </div>
       </div>
     </div>
@@ -87,138 +144,150 @@
     </div>
     <div v-if="mask" class="mask" @touchmove.prevent></div>
     <div v-if="mask" class="howUseBox" @touchmove.prevent>
-      <img v-if="langType ==='en_US'" class="inviteButton" src="../../assets/images/invite/en/Group3@2x.png">
-      <img v-if="langType ==='zh_CN'" class="inviteButton" src="../../assets/images/invite/cn/Group3@2x.png">
-      <img v-if="langType ==='ms_MY'" class="inviteButton" src="../../assets/images/invite/my/Group3@2x.png">
+      <img
+        v-if="langType ==='en_US'"
+        class="inviteButton"
+        src="../../assets/images/invite/en/Group3@2x.png"
+      >
+      <img
+        v-if="langType ==='zh_CN'"
+        class="inviteButton"
+        src="../../assets/images/invite/cn/Group3@2x.png"
+      >
+      <img
+        v-if="langType ==='ms_MY'"
+        class="inviteButton"
+        src="../../assets/images/invite/my/Group3@2x.png"
+      >
       <img class="closeBox" src="../../assets/images/invite/closeBox@2x.png" @click="mask=false">
     </div>
-    <v-footer></v-footer>
+    <v-Foots></v-Foots>
   </div>
 </template>
 
 <script>
-import { Indicator } from 'mint-ui'
-import head from '../Modules/head'
-import footer from '../Modules/footer'
+import { Indicator } from "mint-ui";
+import heads from "../Modules/heads";
+import foots from "../Modules/foots";
 export default {
-  name: 'money',
+  name: "money",
   data() {
     return {
       url: window.config.api.apiUrl,
       Infversion: window.config.api.Infversion,
-      userid: '',
-      token: '',
-      appv: '',
-      ggc: '----',
+      userid: "",
+      token: "",
+      appv: "",
+      ggc: "----",
       loginFlag: false,
       mask: false,
       explainType: 1,
-      shareqrcode: '',
-      userstate: '',
-      warn_content: '',
+      shareqrcode: "",
+      userstate: "",
+      warn_content: "",
       warn_type: 0,
-      langType: 'en_US'
-    }
+      langType: "en_US"
+    };
   },
   components: {
-    vHead: head,
-    vFooter: footer
+    vHeads: heads,
+    vFoots: foots
   },
   created() {
-    this.userid = this.$getUrlParam('userid')
-    this.token = this.$getUrlParam('token')
-    this.appv = this.$getUrlParam('infversionApp')
-    this.langType = this.$store.state.langType
+    this.userid = this.$getUrlParam("userid");
+    this.token = this.$getUrlParam("token");
+    this.appv = this.$getUrlParam("infversionApp");
+    this.langType = this.$store.state.langType;
     if (
       this.langType === null ||
       this.langType === undefined ||
-      this.langType === 'en_US'
+      this.langType === "en_US"
     ) {
-      this.langType = 'en_US'
-      this.$i18n.locale = 'en_US'
-    } else if (this.langType === 'zh_CN') {
-      this.langType = 'zh_CN'
-      this.$i18n.locale = 'zh_CN'
+      this.langType = "en_US";
+      this.$i18n.locale = "en_US";
+    } else if (this.langType === "zh_CN") {
+      this.langType = "zh_CN";
+      this.$i18n.locale = "zh_CN";
     } else {
-      this.langType = 'ms_MY'
-      this.$i18n.locale = 'ms_MY'
+      this.langType = "ms_MY";
+      this.$i18n.locale = "ms_MY";
     }
-    window['getArgument'] = this.getArgument
+    window["getArgument"] = this.getArgument;
     if (
       this.userid === null ||
       this.token === null ||
       this.userid === undefined ||
       this.token === undefined
     ) {
-      this.loginFlag = false
-      return false
+      this.loginFlag = false;
+      return false;
     } else {
-      this.loginFlag = true
+      this.loginFlag = true;
     }
   },
   mounted() {
-    window['reloadMe'] = function() {
-      window.location.reload()
-    }
-    document.getElementsByTagName('body')[0].className = 'money'
-    this.langType = this.$store.state.langType
+    window["reloadMe"] = function() {
+      window.location.reload();
+    };
+    document.getElementsByTagName("body")[0].className = "money";
+    this.langType = this.$store.state.langType;
     if (
       this.langType === null ||
       this.langType === undefined ||
-      this.langType === 'en_US'
+      this.langType === "en_US"
     ) {
-      this.langType = 'en_US'
-      this.$i18n.locale = 'en_US'
-      document.title = 'Invite'
-    } else if (this.langType === 'zh_CN') {
-      this.langType = 'zh_CN'
-      this.$i18n.locale = 'zh_CN'
-      document.title = '邀请'
+      this.langType = "en_US";
+      this.$i18n.locale = "en_US";
+      document.title = "Invite";
+    } else if (this.langType === "zh_CN") {
+      this.langType = "zh_CN";
+      this.$i18n.locale = "zh_CN";
+      document.title = "邀请";
     } else {
-      this.langType = 'ms_MY'
-      this.$i18n.locale = 'ms_MY'
-      document.title = 'Menjemput'
+      this.langType = "ms_MY";
+      this.$i18n.locale = "ms_MY";
+      document.title = "Menjemput";
     }
-    this.userid = this.$getUrlParam('userid')
-    this.token = this.$getUrlParam('token')
-    this.appv = this.$getUrlParam('infversionApp')
+    this.userid = this.$getUrlParam("userid");
+    this.token = this.$getUrlParam("token");
+    this.appv = this.$getUrlParam("infversionApp");
     if (
       this.userid === null ||
       this.token === null ||
       this.userid === undefined ||
       this.token === undefined
     ) {
-      return false
+      return false;
     }
-    this.getPageInfo()
-    this.showRightBtn('yes')
+    this.getPageInfo();
+    this.showRightBtn("yes");
   },
   methods: {
     chooseMe(type) {
-      this.explainType = type
+      this.explainType = type;
     },
     // interactive methods
     // copy code
     copyCode(icode) {
       if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-        window.webkit.messageHandlers.copyCode.postMessage('')
+        window.webkit.messageHandlers.copyCode.postMessage("");
       } else {
-        window.taskCentre.copyCode(icode)
+        window.taskCentre.copyCode(icode);
       }
     },
     // show left bottom
     showRightBtn(type) {
       if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-        window.webkit.messageHandlers.showRightBtn.postMessage(type)
+        window.webkit.messageHandlers.showRightBtn.postMessage(type);
       } else {
-        window.taskCentre.showRightBtn(type)
+        window.taskCentre.showRightBtn(type);
       }
     },
     shareChannel(type) {
       if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-        window.webkit.messageHandlers.shareChannel.postMessage(type)
+        window.webkit.messageHandlers.shareChannel.postMessage(type);
       } else {
-        window.taskCentre.shareChannel(type, '', '', '-1')
+        window.taskCentre.shareChannel(type, "", "", "-1");
       }
     },
     getPageInfo() {
@@ -228,58 +297,58 @@ export default {
         this.userid === undefined ||
         this.token === undefined
       ) {
-        this.loginFlag = false
-        return false
+        this.loginFlag = false;
+        return false;
       } else {
-        this.loginFlag = true
+        this.loginFlag = true;
       }
-      Indicator.open()
-      let url = this.url
+      Indicator.open();
+      let url = this.url;
       let data = {
         userid: this.userid,
         token: this.token,
         Infversion: this.Infversion,
         appv: this.appv,
         i18n: this.langType,
-        Method: 'QueryUserInfoWap'
-      }
+        Method: "QueryUserInfoWap"
+      };
       this.$apiPost(
         url,
         data,
         res => {
           // console.log(res)
-          this.shareqrcode = res.data.shareqrcode
-          this.userstate = res.data.userstate
-          this.ggc = res.data.ggc
-          Indicator.close()
+          this.shareqrcode = res.data.shareqrcode;
+          this.userstate = res.data.userstate;
+          this.ggc = res.data.ggc;
+          Indicator.close();
         },
         res => {
           // console.log(res)
-          Indicator.close()
+          Indicator.close();
         }
-      )
+      );
     },
     loginApp() {
       if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-        window.webkit.messageHandlers.loginApp.postMessage('')
+        window.webkit.messageHandlers.loginApp.postMessage("");
       } else {
-        window.taskCentre.loginApp()
+        window.taskCentre.loginApp();
       }
     },
     getArgument(userid, token, appv) {
-      this.userid = userid
-      this.token = token
-      this.infversionApp = appv
-      this.getPageInfo()
+      this.userid = userid;
+      this.token = token;
+      this.infversionApp = appv;
+      this.getPageInfo();
     }
   }
-}
+};
 </script>
 
 <style lang="less">
 @font-face {
-  font-family: 'font_b';
-  src: url('../../assets/fonts/PINGFANGREGULAR.ttf') format('truetype');
+  font-family: "font_b";
+  src: url("../../assets/fonts/PINGFANGREGULAR.ttf") format("truetype");
 }
 .money {
   background: #ffffff;

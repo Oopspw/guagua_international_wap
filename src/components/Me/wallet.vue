@@ -1,12 +1,18 @@
 <template>
   <div v-title="$route.meta.title">
-    <v-head></v-head>
-    <!-- wallet head -->
+    <v-Heads></v-Heads>
+    <!-- wallet heads -->
     <div class="header">
-      <h3 :class="chooseType ==='income'?'choose':''" @click="select('income')">{{$t("message.wallet.income")}}</h3>
-      <h3 :class="chooseType ==='expenses'?'choose':''" @click="select('expenses')">{{$t("message.wallet.expenses")}}</h3>
+      <h3
+        :class="chooseType ==='income'?'choose':''"
+        @click="select('income')"
+      >{{$t("message.wallet.income")}}</h3>
+      <h3
+        :class="chooseType ==='expenses'?'choose':''"
+        @click="select('expenses')"
+      >{{$t("message.wallet.expenses")}}</h3>
     </div>
-    <!-- income check head -->
+    <!-- income check heads -->
     <div class="income" v-if="chooseType ==='income'">
       <div class="allIncome">
         <p>{{$t("message.wallet.allIncome")}}</p>
@@ -14,17 +20,29 @@
       </div>
       <div class="tabBox">
         <div class="tables">
-          <div class="typeBox" :class="selectType ==='offers'?'select':''" @click="choose('2','offers')">
+          <div
+            class="typeBox"
+            :class="selectType ==='offers'?'select':''"
+            @click="choose('2','offers')"
+          >
             <h3>{{$t("message.wallet.offers")}}</h3>
             <p>{{ commafy(fenxianggold) }}</p>
           </div>
           <div class="line"></div>
-          <div class="typeBox" :class="selectType ==='invite'?'select':''" @click="choose('3','invite')">
+          <div
+            class="typeBox"
+            :class="selectType ==='invite'?'select':''"
+            @click="choose('3','invite')"
+          >
             <h3>{{$t("message.wallet.invite")}}</h3>
             <p>{{ commafy(shitugold) }}</p>
           </div>
           <div class="line"></div>
-          <div class="typeBox" :class="selectType ==='other'?'select':''" @click="choose('0','other')">
+          <div
+            class="typeBox"
+            :class="selectType ==='other'?'select':''"
+            @click="choose('0','other')"
+          >
             <h3>{{$t("message.wallet.other")}}</h3>
             <p>{{ commafy(qitagold) }}</p>
           </div>
@@ -53,7 +71,9 @@
                   <p>{{list.createtime}}</p>
                 </div>
                 <div class="goldNum">+{{commafy(list.golds)}}</div>
-                <div class="readBox">{{$t("message.Read")}}{{list.hits}}&nbsp;&nbsp;|&nbsp;&nbsp;{{$t("message.UnitPrice")}}{{commafy(list.clickgold)}} {{$t("message.wallet.coins")}}</div>
+                <div
+                  class="readBox"
+                >{{$t("message.Read")}}{{list.hits}}&nbsp;&nbsp;|&nbsp;&nbsp;{{$t("message.UnitPrice")}}{{commafy(list.clickgold)}} {{$t("message.wallet.coins")}}</div>
               </div>
             </li>
           </ul>
@@ -65,10 +85,21 @@
           <p>{{$t("message.wallet.nodata")}}</p>
           <div class="goShare" @click="jumpView('4')">{{$t("message.wallet.inviteEarningCoins")}}</div>
         </div>
-        <div v-else class="invitebox" @click="getDayDetails(item.incometime)" v-for="(item,index) in inviteList" v-infinite-scroll="inviteMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10">
+        <div
+          v-else
+          class="invitebox"
+          @click="getDayDetails(item.incometime)"
+          v-for="(item,index) in inviteList"
+          v-infinite-scroll="inviteMore"
+          infinite-scroll-disabled="loading"
+          infinite-scroll-distance="10"
+        >
           <div class="inviteDate">
             <h3>{{item.incometime}}</h3>
-            <p>+{{commafy(item.golds)}}<span :class="ListDate === item.incometime?'hide':'show'"></span></p>
+            <p>
+              +{{commafy(item.golds)}}
+              <span :class="ListDate === item.incometime?'hide':'show'"></span>
+            </p>
           </div>
           <ul class="inviteUl" v-if="ListDate === item.incometime">
             <li class="inviteLi" v-for="list in inviteDetailList">
@@ -79,7 +110,6 @@
               <div class="goldNum">+{{commafy(list.gold)}}</div>
             </li>
           </ul>
-
         </div>
       </div>
 
@@ -88,10 +118,20 @@
           <img src="../../assets/images/default@2x.png">
           <p>{{$t("message.wallet.otherNodata")}}</p>
         </div>
-        <div class="otherbox" @click="getDayDetails(item.incometime)" v-for="(item,index) in otherList" v-infinite-scroll="otherMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10">
+        <div
+          class="otherbox"
+          @click="getDayDetails(item.incometime)"
+          v-for="(item,index) in otherList"
+          v-infinite-scroll="otherMore"
+          infinite-scroll-disabled="loading"
+          infinite-scroll-distance="10"
+        >
           <div class="otherDate">
             <h3>{{item.incometime}}</h3>
-            <p>+{{commafy(item.golds)}}<span :class="ListDate === item.incometime?'hide':'show'"></span></p>
+            <p>
+              +{{commafy(item.golds)}}
+              <span :class="ListDate === item.incometime?'hide':'show'"></span>
+            </p>
           </div>
           <ul class="otherUl" v-if="ListDate === item.incometime">
             <li class="otherLi" v-for="list in otherDetailList">
@@ -106,7 +146,7 @@
       </div>
     </div>
 
-    <!-- expenses check head -->
+    <!-- expenses check heads -->
     <div class="expenses" v-if="chooseType ==='expenses'">
       <div class="vomit">
         <div class="allExpenses">
@@ -124,22 +164,44 @@
             </div>
             <div class="contentBox" v-if="langType !== 'ms_MY'">
               <h2 class="title">
-                <span>RM{{commafy(item.amount)}}</span> {{$t("message.exchange.MoneyWithdraw")}}</h2>
-              <h3 class="content" v-if="item.state === '1'||item.state === '2'">{{$t("message.Consume")}} {{commafy(item.gold)}} {{$t("message.coins")}}</h3>
-              <h3 class="content" v-if="item.state === '3'">{{$t("message.Return")}} {{commafy(item.gold)}} {{$t("message.coins")}}</h3>
+                <span>RM{{commafy(item.amount)}}</span>
+                {{$t("message.exchange.MoneyWithdraw")}}
+              </h2>
+              <h3
+                class="content"
+                v-if="item.state === '1'||item.state === '2'"
+              >{{$t("message.Consume")}} {{commafy(item.gold)}} {{$t("message.coins")}}</h3>
+              <h3
+                class="content"
+                v-if="item.state === '3'"
+              >{{$t("message.Return")}} {{commafy(item.gold)}} {{$t("message.coins")}}</h3>
               <p class="time">{{item.createtime}}</p>
             </div>
             <div class="contentBox" v-else>
               <h2 class="title">
-                {{$t("message.exchange.MoneyWithdraw")}} <span>RM{{commafy(item.amount)}}</span> </h2>
-              <h3 class="content" v-if="item.state === '1'||item.state === '2'">{{$t("message.Consume")}} {{commafy(item.gold)}} {{$t("message.coins")}}</h3>
-              <h3 class="content" v-if="item.state === '3'">{{$t("message.Return")}} {{commafy(item.gold)}} {{$t("message.coins")}}</h3>
+                {{$t("message.exchange.MoneyWithdraw")}}
+                <span>RM{{commafy(item.amount)}}</span>
+              </h2>
+              <h3
+                class="content"
+                v-if="item.state === '1'||item.state === '2'"
+              >{{$t("message.Consume")}} {{commafy(item.gold)}} {{$t("message.coins")}}</h3>
+              <h3
+                class="content"
+                v-if="item.state === '3'"
+              >{{$t("message.Return")}} {{commafy(item.gold)}} {{$t("message.coins")}}</h3>
               <p class="time">{{item.createtime}}</p>
             </div>
             <div class="statusBox">
               <h4 v-if="item.state === '1'" style="color:#f2a638">{{$t("message.wallet.inPayment")}}</h4>
-              <h4 v-if="item.state === '2'" style="color:#e70031">{{$t("message.wallet.paymentCompleted")}}</h4>
-              <h4 v-if="item.state === '3'" style="color:#e70031">{{$t("message.wallet.paymentFailde")}}</h4>
+              <h4
+                v-if="item.state === '2'"
+                style="color:#e70031"
+              >{{$t("message.wallet.paymentCompleted")}}</h4>
+              <h4
+                v-if="item.state === '3'"
+                style="color:#e70031"
+              >{{$t("message.wallet.paymentFailde")}}</h4>
             </div>
             <div v-if="item.state === '3'" class="reason">{{$t("message.Reason")}}: {{item.remark}}</div>
           </li>
@@ -151,29 +213,29 @@
         <div class="goShare" @click="jumpView('1')">{{$t("message.exchange.PayPalReward")}}</div>
       </div>
     </div>
-    <v-footer></v-footer>
+    <v-foots></v-foots>
   </div>
 </template>
 
 <script>
-import head from '../Modules/head'
-import footer from '../Modules/footer'
-import { InfiniteScroll } from 'mint-ui'
-import { Indicator } from 'mint-ui'
+import heads from "../Modules/heads";
+import foots from "../Modules/foots";
+import { InfiniteScroll } from "mint-ui";
+import { Indicator } from "mint-ui";
 export default {
-  name: 'wallet',
+  name: "wallet",
   data() {
     return {
       url: window.config.api.apiUrl,
       Infversion: window.config.api.Infversion,
       // user id
-      userid: '335428',
+      userid: "335428",
       // user token
-      token: 'b3622cba-3d62-4126-814b-cbb25d7d9c68',
-      appv: '',
+      token: "b3622cba-3d62-4126-814b-cbb25d7d9c68",
+      appv: "",
       // user select type
-      chooseType: 'income',
-      selectType: 'offers',
+      chooseType: "income",
+      selectType: "offers",
       // visit types
       type: 3,
       // page begin
@@ -181,148 +243,148 @@ export default {
       // page size
       PageSize: 10,
       // user's total gold
-      totalgold: '--',
+      totalgold: "--",
       // get gold by apprentice
-      shitugold: '--',
+      shitugold: "--",
       //get gold by task
-      fenxianggold: '--',
+      fenxianggold: "--",
       // get gold by other
-      qitagold: '--',
+      qitagold: "--",
       // other list
       // page begin
       otherStart: 0,
-      otherList: '',
-      otherDetailList: '',
+      otherList: "",
+      otherDetailList: "",
       // invite list
       // page begin
       inviteStart: 0,
-      inviteList: '',
-      inviteDetailList: '',
+      inviteList: "",
+      inviteDetailList: "",
       // offers list
-      offersList: '',
-      offersDetailList: '',
-      ListDate: '',
+      offersList: "",
+      offersDetailList: "",
+      ListDate: "",
       // nodata show status
       nodata: false,
       nodatas: false,
-      exchangeList: '',
+      exchangeList: "",
       // all exchange amont
-      withdraw: '--',
-      langType: 'en_US'
-    }
+      withdraw: "--",
+      langType: "en_US"
+    };
   },
   components: {
-    vHead: head,
-    vFooter: footer
+    vHeads: heads,
+    vFoots: foots
   },
   mounted() {
-    document.getElementsByTagName('body')[0].className = 'wallte'
-    this.langType = this.$store.state.langType
+    document.getElementsByTagName("body")[0].className = "wallte";
+    this.langType = this.$store.state.langType;
     if (
       this.langType === null ||
       this.langType === undefined ||
-      this.langType === 'en_US'
+      this.langType === "en_US"
     ) {
-      this.langType = 'en_US'
-      this.$i18n.locale = 'en_US'
-      document.title = 'Records'
-    } else if (this.langType === 'zh_CN') {
-      this.langType = 'zh_CN'
-      this.$i18n.locale = 'zh_CN'
-      document.title = '账本'
+      this.langType = "en_US";
+      this.$i18n.locale = "en_US";
+      document.title = "Records";
+    } else if (this.langType === "zh_CN") {
+      this.langType = "zh_CN";
+      this.$i18n.locale = "zh_CN";
+      document.title = "账本";
     } else {
-      this.langType = 'ms_MY'
-      this.$i18n.locale = 'ms_MY'
-      document.title = 'Rekod-rekod'
+      this.langType = "ms_MY";
+      this.$i18n.locale = "ms_MY";
+      document.title = "Rekod-rekod";
     }
-    this.userid = this.$getUrlParam('userid')
-    this.token = this.$getUrlParam('token')
-    this.appv = this.$getUrlParam('infversionApp')
-    let chooseType = this.$getUrlParam('chooseType')
-    if (chooseType === '1') {
-      this.select('expenses')
+    this.userid = this.$getUrlParam("userid");
+    this.token = this.$getUrlParam("token");
+    this.appv = this.$getUrlParam("infversionApp");
+    let chooseType = this.$getUrlParam("chooseType");
+    if (chooseType === "1") {
+      this.select("expenses");
     }
-    let expenses = localStorage.expenses
-    if (expenses === 'expenses') {
-      this.select('expenses')
-      localStorage.expenses = ''
+    let expenses = localStorage.expenses;
+    if (expenses === "expenses") {
+      this.select("expenses");
+      localStorage.expenses = "";
     }
-    this.getWalletInfo()
-    this.getOffersDetail()
+    this.getWalletInfo();
+    this.getOffersDetail();
   },
   methods: {
     jumpView(type) {
       if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-        window.webkit.messageHandlers.jumpView.postMessage(type)
+        window.webkit.messageHandlers.jumpView.postMessage(type);
       } else {
-        window.taskCentre.jumpView(type)
+        window.taskCentre.jumpView(type);
       }
     },
     select(type) {
-      this.chooseType = type
-      if (type === 'expenses') {
-        this.getExchageRecord()
+      this.chooseType = type;
+      if (type === "expenses") {
+        this.getExchageRecord();
       } else {
-        this.choose('2', 'offers')
+        this.choose("2", "offers");
       }
-      this.nodata = false
+      this.nodata = false;
     },
     choose(type, choose) {
-      this.type = type
-      this.selectType = choose
-      if (this.selectType === 'offers') {
-        this.getOffersDetail()
+      this.type = type;
+      this.selectType = choose;
+      if (this.selectType === "offers") {
+        this.getOffersDetail();
       } else {
-        this.getListInfo()
+        this.getListInfo();
       }
     },
-    // get wallet head show info
+    // get wallet heads show info
     getWalletInfo() {
-      let url = this.url
+      let url = this.url;
       let data = {
         userid: this.userid,
         token: this.token,
         Infversion: this.Infversion,
         appv: this.appv,
         i18n: this.langType,
-        Method: 'QueryUserIncomeTotalWap'
-      }
+        Method: "QueryUserIncomeTotalWap"
+      };
       this.$apiPost(
         url,
         data,
         res => {
           //console.log(res)
-          this.totalgold = res.data.totalgold
-          this.shitugold = res.data.shitugold
-          this.fenxianggold = res.data.fenxianggold
-          this.qitagold = res.data.qitagold
+          this.totalgold = res.data.totalgold;
+          this.shitugold = res.data.shitugold;
+          this.fenxianggold = res.data.fenxianggold;
+          this.qitagold = res.data.qitagold;
         },
         res => {
           //console.log(res)
         }
-      )
+      );
     },
     // get income list
     getListInfo() {
-      this.nodata = false
-      if (this.type === '3') {
-        this.PageStart = this.inviteStart
+      this.nodata = false;
+      if (this.type === "3") {
+        this.PageStart = this.inviteStart;
         if (this.inviteList.length === 0) {
-          this.nodata = true
+          this.nodata = true;
         } else {
-          this.nodata = false
-          return false
+          this.nodata = false;
+          return false;
         }
-      } else if (this.type === '0') {
-        this.PageStart = this.otherStart
+      } else if (this.type === "0") {
+        this.PageStart = this.otherStart;
         if (this.otherList.length === 0) {
-          this.nodata = true
+          this.nodata = true;
         } else {
-          this.nodata = false
-          return false
+          this.nodata = false;
+          return false;
         }
       }
-      let url = this.url
+      let url = this.url;
       let data = {
         userid: this.userid,
         token: this.token,
@@ -332,115 +394,115 @@ export default {
         PageStart: this.PageStart,
         appv: this.appv,
         i18n: this.langType,
-        Method: 'QueryUserIncomeDayListWap'
-      }
+        Method: "QueryUserIncomeDayListWap"
+      };
       this.$apiPost(
         url,
         data,
         res => {
           //console.log(res)
-          if (this.type === '3') {
-            this.inviteList = res.data
+          if (this.type === "3") {
+            this.inviteList = res.data;
             if (this.inviteList.length === 0) {
-              this.nodata = true
+              this.nodata = true;
             } else {
-              this.nodata = false
-              this.getDayDetails(this.inviteList[0].incometime)
+              this.nodata = false;
+              this.getDayDetails(this.inviteList[0].incometime);
               this.inviteStart = this.inviteList[
                 this.inviteList.length - 1
-              ].recordid
+              ].recordid;
             }
-          } else if (this.type === '0') {
-            this.otherList = res.data
+          } else if (this.type === "0") {
+            this.otherList = res.data;
             if (this.otherList.length === 0) {
-              this.nodata = true
+              this.nodata = true;
             } else {
-              this.nodata = false
-              this.getDayDetails(this.otherList[0].incometime)
+              this.nodata = false;
+              this.getDayDetails(this.otherList[0].incometime);
               this.otherStart = this.otherList[
                 this.otherList.length - 1
-              ].recordid
+              ].recordid;
             }
           }
         },
         res => {
           //console.log(res)
         }
-      )
+      );
     },
 
     // load more invite list
     inviteMore() {
       if (this.inviteStart === 0) {
-        return false
+        return false;
       }
-      let url = this.url
+      let url = this.url;
       let data = {
         userid: this.userid,
         token: this.token,
         Infversion: this.Infversion,
-        type: '3',
+        type: "3",
         PageSize: this.PageSize,
         PageStart: this.inviteStart,
         appv: this.appv,
         i18n: this.langType,
-        Method: 'QueryUserIncomeDayListWap'
-      }
+        Method: "QueryUserIncomeDayListWap"
+      };
       this.$apiPost(
         url,
         data,
         res => {
           //console.log(res)
-          this.inviteList = this.inviteList.concat(res.data)
+          this.inviteList = this.inviteList.concat(res.data);
           this.inviteStart = this.inviteList[
             this.inviteList.length - 1
-          ].recordid
+          ].recordid;
         },
         res => {
           //console.log(res)
         }
-      )
+      );
     },
 
     // load more other list
     otherMore() {
       if (this.otherStart === 0) {
-        return false
+        return false;
       }
-      let url = this.url
+      let url = this.url;
       let data = {
         userid: this.userid,
         token: this.token,
         Infversion: this.Infversion,
-        type: '0',
+        type: "0",
         PageSize: this.PageSize,
         PageStart: this.otherStart,
         appv: this.appv,
         i18n: this.langType,
-        Method: 'QueryUserIncomeDayListWap'
-      }
+        Method: "QueryUserIncomeDayListWap"
+      };
       this.$apiPost(
         url,
         data,
         res => {
           //console.log(res)
-          this.otherList = this.otherList.concat(res.data)
-          this.otherStart = this.otherList[this.otherList.length - 1].recordid
+          this.otherList = this.otherList.concat(res.data);
+          this.otherStart = this.otherList[this.otherList.length - 1].recordid;
         },
         res => {
           //console.log(res)
         }
-      )
+      );
     },
 
     getDayDetails(time) {
       if (time === this.ListDate) {
-        return false
+        return false;
       }
-      Indicator.open()
-      this.ListDate = time
-      this.allDetailList = ''
-      let url = this.url
+      Indicator.open();
+      this.ListDate = time;
+      this.allDetailList = "";
+      let url = this.url;
       let data = {
         userid: this.userid,
         token: this.token,
@@ -448,57 +510,57 @@ export default {
         type: this.type,
         incometime: time,
         i18n: this.langType,
-        Method: 'QueryUserIncomeDayDetailListWap'
-      }
+        Method: "QueryUserIncomeDayDetailListWap"
+      };
       this.$apiPost(
         url,
         data,
         res => {
-          if (this.type === '3') {
-            this.inviteDetailList = res.data
-          } else if (this.type === '0') {
-            this.otherDetailList = res.data
+          if (this.type === "3") {
+            this.inviteDetailList = res.data;
+          } else if (this.type === "0") {
+            this.otherDetailList = res.data;
           }
-          Indicator.close()
+          Indicator.close();
         },
         res => {
-          Indicator.close()
+          Indicator.close();
           //console.log(res)
         }
-      )
+      );
     },
     // get offers detail
     getOffersDetail() {
-      this.nodata = false
-      let url = this.url
+      this.nodata = false;
+      let url = this.url;
       let data = {
         userid: this.userid,
         token: this.token,
         Infversion: this.Infversion,
         appv: this.appv,
         i18n: this.langType,
-        Method: 'QueryUserFenXiangDetailListWap'
-      }
+        Method: "QueryUserFenXiangDetailListWap"
+      };
       this.$apiPost(
         url,
         data,
         res => {
           // console.log(res)
-          this.offersList = res.data
+          this.offersList = res.data;
           if (this.offersList.length === 0) {
-            this.nodata = true
+            this.nodata = true;
           } else {
-            this.nodata = false
+            this.nodata = false;
           }
         },
         res => {
           // console.log(res)
-          this.nodata = true
+          this.nodata = true;
         }
-      )
+      );
     },
     getExchageRecord() {
-      let url = this.url
+      let url = this.url;
       let data = {
         userid: this.userid,
         token: this.token,
@@ -507,62 +569,62 @@ export default {
         pagestart: this.PageStart,
         appv: this.appv,
         i18n: this.langType,
-        Method: 'QueryExchageRecordInfoWap'
-      }
+        Method: "QueryExchageRecordInfoWap"
+      };
       this.$apiPost(
         url,
         data,
         res => {
-          this.withdraw = res.data.tixianleiji
-          this.exchangeList = res.data.items
+          this.withdraw = res.data.tixianleiji;
+          this.exchangeList = res.data.items;
           if (this.exchangeList.length === 0) {
-            this.nodatas = true
+            this.nodatas = true;
           } else {
-            this.nodatas = false
+            this.nodatas = false;
           }
         },
         res => {
           //console.log(res)
-          this.nodatas = true
+          this.nodatas = true;
         }
-      )
+      );
     },
     commafy(num) {
-      let iValue = num //要转换的数字
-      let sValue = iValue + ''
-      let aValue = new Array()
-      let iNum = sValue.length % 3
-      let aResult //转换结果
-      let index = 0
+      let iValue = num; //要转换的数字
+      let sValue = iValue + "";
+      let aValue = new Array();
+      let iNum = sValue.length % 3;
+      let aResult; //转换结果
+      let index = 0;
       if (sValue.length <= 3) {
-        return iValue
+        return iValue;
       } else {
         if (iNum == 0) {
           for (var i = 0; i < sValue.length; i = i + 3) {
-            aValue[index] = sValue[i] + '' + sValue[i + 1] + '' + sValue[i + 2]
-            index++
+            aValue[index] = sValue[i] + "" + sValue[i + 1] + "" + sValue[i + 2];
+            index++;
           }
         } else if (iNum == 1) {
-          aValue[0] = sValue[0]
-          index = 1
+          aValue[0] = sValue[0];
+          index = 1;
           for (var i = 1; i < sValue.length; i = i + 3) {
-            aValue[index] = sValue[i] + '' + sValue[i + 1] + '' + sValue[i + 2]
-            index++
+            aValue[index] = sValue[i] + "" + sValue[i + 1] + "" + sValue[i + 2];
+            index++;
           }
         } else if (iNum == 2) {
-          aValue[0] = sValue[0] + '' + sValue[1]
-          index = 1
+          aValue[0] = sValue[0] + "" + sValue[1];
+          index = 1;
           for (var i = 2; i < sValue.length; i = i + 3) {
-            aValue[index] = sValue[i] + '' + sValue[i + 1] + '' + sValue[i + 2]
-            index++
+            aValue[index] = sValue[i] + "" + sValue[i + 1] + "" + sValue[i + 2];
+            index++;
           }
         }
-        aResult = aValue.join(',')
-        return aResult.toString() //输出20,002,365,879
+        aResult = aValue.join(",");
+        return aResult.toString(); //输出20,002,365,879
       }
     }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>
@@ -596,7 +658,7 @@ export default {
     position: relative;
   }
   .choose::after {
-    content: '';
+    content: "";
     position: absolute;
     width: 0.75rem;
     height: 0.06rem;
@@ -719,7 +781,7 @@ export default {
         right: 0rem;
         transform: translateY(-50%);
         -webkit-transform: translateY(-50%);
-        background: url('../../assets/images/show.png');
+        background: url("../../assets/images/show.png");
         background-size: 100% 100%;
       }
       .hide {
@@ -731,7 +793,7 @@ export default {
         right: 0rem;
         transform: translateY(-50%);
         -webkit-transform: translateY(-50%);
-        background: url('../../assets/images/hide.png');
+        background: url("../../assets/images/hide.png");
         background-size: 100% 100%;
       }
     }
@@ -816,7 +878,7 @@ export default {
         right: 0rem;
         transform: translateY(-50%);
         -webkit-transform: translateY(-50%);
-        background: url('../../assets/images/show.png');
+        background: url("../../assets/images/show.png");
         background-size: 100% 100%;
       }
       .hide {
@@ -828,7 +890,7 @@ export default {
         right: 0rem;
         transform: translateY(-50%);
         -webkit-transform: translateY(-50%);
-        background: url('../../assets/images/hide.png');
+        background: url("../../assets/images/hide.png");
         background-size: 100% 100%;
       }
     }

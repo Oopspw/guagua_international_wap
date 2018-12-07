@@ -8,17 +8,17 @@ export default new Router({
   routes: [
     // 功能组件
     {
-      path: '/head',
-      name: 'head',
-      component: resolve => require(['components/Modules/head.vue'], resolve),
+      path: '/heads',
+      name: 'heads',
+      component: resolve => require(['components/Modules/heads.vue'], resolve),
       meta: {
         title: 'Withdraw'
       }
     },
     {
-      path: '/footer',
-      name: 'footer',
-      component: resolve => require(['components/Modules/footer.vue'], resolve),
+      path: '/foots',
+      name: 'foots',
+      component: resolve => require(['components/Modules/foots.vue'], resolve),
       meta: {
         title: 'Withdraw'
       }
@@ -132,6 +132,14 @@ export default new Router({
       path: '/article',
       name: 'article',
       component: resolve => require(['components/Offers/article.vue'], resolve),
+      meta: {
+        title: 'Rewards'
+      }
+    },
+    {
+      path: '/share',
+      name: 'share',
+      component: resolve => require(['components/Offers/share.vue'], resolve),
       meta: {
         title: 'Rewards'
       }

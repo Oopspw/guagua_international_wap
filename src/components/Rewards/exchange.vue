@@ -1,39 +1,68 @@
 <template>
   <div v-title="$route.meta.title">
-    <v-head></v-head>
+    <v-Heads></v-Heads>
     <div class="contain">
       <h3>{{$t("message.exchange.myBalance")}}</h3>
       <h1 v-if="!loginFlag">{{$t("message.exchange.getLogin")}}</h1>
       <h1 v-else>{{commafy(balancegold)}}</h1>
-      <div v-if="!loginFlag" class="jumpBtn" @click="loginApp()">{{$t("message.exchange.myExpenses")}}</div>
+      <div
+        v-if="!loginFlag"
+        class="jumpBtn"
+        @click="loginApp()"
+      >{{$t("message.exchange.myExpenses")}}</div>
       <div v-else class="jumpBtn" @click="jumpView('2')">{{$t("message.exchange.myExpenses")}}</div>
       <img v-if="photo !==''&&loginFlag" class="userImg" :src="photo">
       <img v-if="!loginFlag" class="userImg" src="../../assets/images/icon.png">
     </div>
-    <div class="paypalTitle">
-      {{$t("message.exchange.PayPalReward")}}
-    </div>
+    <div class="paypalTitle">{{$t("message.exchange.PayPalReward")}}</div>
     <div class="paypalContent">
       <p>{{$t("message.exchange.exchagneTips")}}</p>
     </div>
     <ul class="payUl">
-      <li v-if="loginFlag" class="payLi" @click="contactUs(item.amount)" v-for="item in exchangeList">
+      <li
+        v-if="loginFlag"
+        class="payLi"
+        @click="contactUs(item.amount)"
+        v-for="item in exchangeList"
+      >
         <div class="imgBox">
           <img src="../../assets/images/Cash@2x.png">
         </div>
         <div class="contentBox" v-if="langType !== 'ms_MY'">
           <h3 class="title">
-            <span>RM{{item.amount}}</span> {{$t("message.exchange.MoneyWithdraw")}}</h3>
-          <p class="desc_tips" v-if="item.amount === 1||item.amount === '1'">{{$t("message.exchange.first")}}</p>
-          <p class="desc_tips" v-if="item.amount === 1||item.amount === '1'">{{$t("message.exchange.consume")}} {{commafy(item.amount*1000)}} {{$t("message.coins")}}</p>
-          <p class="desc" v-else>{{$t("message.exchange.consume")}} {{commafy(item.amount*1000)}} {{$t("message.coins")}}</p>
+            <span>RM{{item.amount}}</span>
+            {{$t("message.exchange.MoneyWithdraw")}}
+          </h3>
+          <p
+            class="desc_tips"
+            v-if="item.amount === 1||item.amount === '1'"
+          >{{$t("message.exchange.first")}}</p>
+          <p
+            class="desc_tips"
+            v-if="item.amount === 1||item.amount === '1'"
+          >{{$t("message.exchange.consume")}} {{commafy(item.amount*1000)}} {{$t("message.coins")}}</p>
+          <p
+            class="desc"
+            v-else
+          >{{$t("message.exchange.consume")}} {{commafy(item.amount*1000)}} {{$t("message.coins")}}</p>
         </div>
         <div class="contentBox" v-else>
           <h3 class="title">
-            {{$t("message.exchange.MoneyWithdraw")}} <span>RM{{item.amount}}</span> </h3>
-          <p class="desc_tips" v-if="item.amount === 1||item.amount === '1'">{{$t("message.exchange.first")}}</p>
-          <p class="desc_tips" v-if="item.amount === 1||item.amount === '1'">menggunakan {{commafy(item.amount*1000)}} Coins sahaja</p>
-          <p class="desc" v-else>{{$t("message.exchange.consume")}} {{commafy(item.amount*1000)}} {{$t("message.coins")}}</p>
+            {{$t("message.exchange.MoneyWithdraw")}}
+            <span>RM{{item.amount}}</span>
+          </h3>
+          <p
+            class="desc_tips"
+            v-if="item.amount === 1||item.amount === '1'"
+          >{{$t("message.exchange.first")}}</p>
+          <p
+            class="desc_tips"
+            v-if="item.amount === 1||item.amount === '1'"
+          >menggunakan {{commafy(item.amount*1000)}} Coins sahaja</p>
+          <p
+            class="desc"
+            v-else
+          >{{$t("message.exchange.consume")}} {{commafy(item.amount*1000)}} {{$t("message.coins")}}</p>
         </div>
         <div class="arrowsBox">
           <img src="../../assets/images/right@2x.png">
@@ -45,17 +74,39 @@
         </div>
         <div class="contentBox" v-if="langType !== 'ms_MY'">
           <h3 class="title">
-            <span>RM{{item.amount}}</span> {{$t("message.exchange.MoneyWithdraw")}}</h3>
-          <p class="desc_tips" v-if="item.amount === 1||item.amount === '1'">{{$t("message.exchange.first")}}</p>
-          <p class="desc_tips" v-if="item.amount === 1||item.amount === '1'">{{$t("message.exchange.consume")}} {{commafy(item.amount*1000)}} {{$t("message.coins")}}</p>
-          <p class="desc" v-else>{{$t("message.exchange.consume")}} {{commafy(item.amount*1000)}} {{$t("message.coins")}}</p>
+            <span>RM{{item.amount}}</span>
+            {{$t("message.exchange.MoneyWithdraw")}}
+          </h3>
+          <p
+            class="desc_tips"
+            v-if="item.amount === 1||item.amount === '1'"
+          >{{$t("message.exchange.first")}}</p>
+          <p
+            class="desc_tips"
+            v-if="item.amount === 1||item.amount === '1'"
+          >{{$t("message.exchange.consume")}} {{commafy(item.amount*1000)}} {{$t("message.coins")}}</p>
+          <p
+            class="desc"
+            v-else
+          >{{$t("message.exchange.consume")}} {{commafy(item.amount*1000)}} {{$t("message.coins")}}</p>
         </div>
         <div class="contentBox" v-else>
           <h3 class="title">
-            {{$t("message.exchange.MoneyWithdraw")}} <span>RM{{item.amount}}</span></h3>
-          <p class="desc_tips" v-if="item.amount === 1||item.amount === '1'">{{$t("message.exchange.first")}}</p>
-          <p class="desc_tips" v-if="item.amount === 1||item.amount === '1'">menggunakan {{commafy(item.amount*1000)}} Coins sahaja</p>
-          <p class="desc" v-else>{{$t("message.exchange.consume")}} {{commafy(item.amount*1000)}} {{$t("message.coins")}}</p>
+            {{$t("message.exchange.MoneyWithdraw")}}
+            <span>RM{{item.amount}}</span>
+          </h3>
+          <p
+            class="desc_tips"
+            v-if="item.amount === 1||item.amount === '1'"
+          >{{$t("message.exchange.first")}}</p>
+          <p
+            class="desc_tips"
+            v-if="item.amount === 1||item.amount === '1'"
+          >menggunakan {{commafy(item.amount*1000)}} Coins sahaja</p>
+          <p
+            class="desc"
+            v-else
+          >{{$t("message.exchange.consume")}} {{commafy(item.amount*1000)}} {{$t("message.coins")}}</p>
         </div>
         <div class="arrowsBox">
           <img src="../../assets/images/right@2x.png">
@@ -65,130 +116,130 @@
     <div class="warn" v-if="warn_type===1">
       <p>{{warn_content}}</p>
     </div>
-    <v-footer></v-footer>
+    <v-foots></v-foots>
   </div>
 </template>
 
 <script>
-import head from '../Modules/head'
-import footer from '../Modules/footer'
-import { InfiniteScroll } from 'mint-ui'
+import heads from "../Modules/heads";
+import foots from "../Modules/foots";
+import { InfiniteScroll } from "mint-ui";
 export default {
-  name: 'exchange',
+  name: "exchange",
   data() {
     return {
       url: window.config.api.apiUrl,
       Infversion: window.config.api.Infversion,
       // user id
-      userid: '335428',
+      userid: "335428",
       // user token
-      token: 'b3622cba-3d62-4126-814b-cbb25d7d9c68',
-      appv: '1.0',
+      token: "b3622cba-3d62-4126-814b-cbb25d7d9c68",
+      appv: "1.0",
       loginFlag: false,
-      photo: '',
-      balancegold: '--',
+      photo: "",
+      balancegold: "--",
       allgold: 0,
-      email: '',
+      email: "",
       exchangeList: [
-        { amount: '1' },
-        { amount: '10' },
-        { amount: '25' },
-        { amount: '50' }
+        { amount: "1" },
+        { amount: "10" },
+        { amount: "25" },
+        { amount: "50" }
       ],
-      warn_content: '',
+      warn_content: "",
       warn_type: 0,
-      langType: 'en_US'
-    }
+      langType: "en_US"
+    };
   },
   components: {
-    vHead: head,
-    vFooter: footer
+    vHeads: heads,
+    vFoots: foots
   },
   created() {
-    this.userid = this.$getUrlParam('userid')
-    this.token = this.$getUrlParam('token')
-    this.appv = this.$getUrlParam('infversionApp')
-    this.langType = this.$store.state.langType
+    this.userid = this.$getUrlParam("userid");
+    this.token = this.$getUrlParam("token");
+    this.appv = this.$getUrlParam("infversionApp");
+    this.langType = this.$store.state.langType;
     if (
       this.langType === null ||
       this.langType === undefined ||
-      this.langType === 'en_US'
+      this.langType === "en_US"
     ) {
-      this.langType = 'en_US'
-      this.$i18n.locale = 'en_US'
-    } else if (this.langType === 'zh_CN') {
-      this.langType = 'zh_CN'
-      this.$i18n.locale = 'zh_CN'
+      this.langType = "en_US";
+      this.$i18n.locale = "en_US";
+    } else if (this.langType === "zh_CN") {
+      this.langType = "zh_CN";
+      this.$i18n.locale = "zh_CN";
     } else {
-      this.langType = 'ms_MY'
-      this.$i18n.locale = 'ms_MY'
+      this.langType = "ms_MY";
+      this.$i18n.locale = "ms_MY";
     }
-    window['refreshMe'] = this.refreshMe
-    window['getArgument'] = this.getArgument
+    window["refreshMe"] = this.refreshMe;
+    window["getArgument"] = this.getArgument;
     if (
       this.userid === null ||
       this.token === null ||
       this.userid === undefined ||
       this.token === undefined
     ) {
-      this.loginFlag = false
-      return false
+      this.loginFlag = false;
+      return false;
     } else {
-      this.loginFlag = true
+      this.loginFlag = true;
     }
   },
   mounted() {
-    document.getElementsByTagName('body')[0].className = 'exchange'
-    this.userid = this.$getUrlParam('userid')
-    this.token = this.$getUrlParam('token')
-    this.appv = this.$getUrlParam('infversionApp')
-    this.langType = this.$store.state.langType
+    document.getElementsByTagName("body")[0].className = "exchange";
+    this.userid = this.$getUrlParam("userid");
+    this.token = this.$getUrlParam("token");
+    this.appv = this.$getUrlParam("infversionApp");
+    this.langType = this.$store.state.langType;
     if (
       this.langType === null ||
       this.langType === undefined ||
-      this.langType === 'en_US'
+      this.langType === "en_US"
     ) {
-      this.langType = 'en_US'
-      this.$i18n.locale = 'en_US'
-      document.title = 'Rewards'
-    } else if (this.langType === 'zh_CN') {
-      this.langType = 'zh_CN'
-      this.$i18n.locale = 'zh_CN'
-      document.title = '兑换'
+      this.langType = "en_US";
+      this.$i18n.locale = "en_US";
+      document.title = "Rewards";
+    } else if (this.langType === "zh_CN") {
+      this.langType = "zh_CN";
+      this.$i18n.locale = "zh_CN";
+      document.title = "兑换";
     } else {
-      this.langType = 'ms_MY'
-      this.$i18n.locale = 'ms_MY'
-      document.title = 'Ganjaran'
+      this.langType = "ms_MY";
+      this.$i18n.locale = "ms_MY";
+      document.title = "Ganjaran";
     }
     // this.getExchagneList()
-    this.getBankList()
+    this.getBankList();
   },
   methods: {
     // methods skip page for ios and android
     jumpView(type) {
-      if (type === '2') {
-        localStorage.expenses = 'expenses'
+      if (type === "2") {
+        localStorage.expenses = "expenses";
         // goole 用户事件监听
-        this.handleOutboundLinkClicks('点击My Expenses')
+        this.handleOutboundLinkClicks("点击My Expenses");
       }
       if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-        window.webkit.messageHandlers.jumpView.postMessage(type)
+        window.webkit.messageHandlers.jumpView.postMessage(type);
       } else {
-        window.taskCentre.jumpView(type)
+        window.taskCentre.jumpView(type);
       }
     },
     loginApp() {
       if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-        window.webkit.messageHandlers.loginApp.postMessage('')
+        window.webkit.messageHandlers.loginApp.postMessage("");
       } else {
-        window.taskCentre.loginApp()
+        window.taskCentre.loginApp();
       }
     },
     getArgument(userid, token, appv) {
-      this.userid = userid
-      this.token = token
-      this.infversionApp = appv
-      this.getBankList()
+      this.userid = userid;
+      this.token = token;
+      this.infversionApp = appv;
+      this.getBankList();
     },
     // Skip to contactUs page
     contactUs(money) {
@@ -196,42 +247,42 @@ export default {
       //   sessionStorage.email = this.email
       // }
       if (!this.loginFlag) {
-        this.jumpView('2')
-        return false
+        this.jumpView("2");
+        return false;
       }
       if (this.allgold < money * 1000) {
         if (
-          this.langType === 'en_US' ||
+          this.langType === "en_US" ||
           this.langType === undefined ||
           this.langType === null
         ) {
-          this.showWarnTips("You don't have enough coins")
-        } else if (this.langType === 'zh_CN') {
-          this.showWarnTips('您的金币不足')
+          this.showWarnTips("You don't have enough coins");
+        } else if (this.langType === "zh_CN") {
+          this.showWarnTips("您的金币不足");
         } else {
-          this.showWarnTips('Anda tidak mempunyai cukup duit syiling')
+          this.showWarnTips("Anda tidak mempunyai cukup duit syiling");
         }
-        return false
+        return false;
       }
-      let date = new Date()
-      let day = date.getDate()
+      let date = new Date();
+      let day = date.getDate();
       if (day < 10) {
-        day = '0' + day
+        day = "0" + day;
       }
-      let month = date.getMonth() + 1
+      let month = date.getMonth() + 1;
       if (month < 10) {
-        month = '0' + month
+        month = "0" + month;
       }
-      let year = date.getFullYear()
-      sessionStorage.time = day + '/' + month + '/' + year
-      sessionStorage.money = money
-      sessionStorage.userid = this.userid
-      sessionStorage.token = this.token
-      sessionStorage.appv = this.appv
-      sessionStorage.langType = this.langType
+      let year = date.getFullYear();
+      sessionStorage.time = day + "/" + month + "/" + year;
+      sessionStorage.money = money;
+      sessionStorage.userid = this.userid;
+      sessionStorage.token = this.token;
+      sessionStorage.appv = this.appv;
+      sessionStorage.langType = this.langType;
       // goole 用户事件监听
-      this.handleOutboundLinkClicks(money + 'RN兑换')
-      this.$router.push({ path: '/extract' })
+      this.handleOutboundLinkClicks(money + "RN兑换");
+      this.$router.push({ path: "/extract" });
     },
     getBankList() {
       if (
@@ -240,38 +291,38 @@ export default {
         this.userid === undefined ||
         this.token === undefined
       ) {
-        this.loginFlag = false
-        return false
+        this.loginFlag = false;
+        return false;
       } else {
-        this.loginFlag = true
+        this.loginFlag = true;
       }
-      let url = this.url
+      let url = this.url;
       let data = {
         userid: this.userid,
         token: this.token,
         Infversion: this.Infversion,
         i18n: this.langType,
         appv: this.appv,
-        Method: 'QueryBankExchageInfo'
-      }
+        Method: "QueryBankExchageInfo"
+      };
       this.$apiPost(
         url,
         data,
         res => {
-          console.log(res)
-          this.balancegold = res.data.balancegold
-          this.allgold = res.data.balancegold * 1
-          this.photo = res.data.photo
-          sessionStorage.mobile = res.data.bankphonenumber
-          sessionStorage.bankaccountname = res.data.bankaccountname
-          sessionStorage.bankaccountnumber = res.data.bankaccountnumber
-          this.exchangeList = res.data.exchangeinfo
+          console.log(res);
+          this.balancegold = res.data.balancegold;
+          this.allgold = res.data.balancegold * 1;
+          this.photo = res.data.photo;
+          sessionStorage.mobile = res.data.bankphonenumber;
+          sessionStorage.bankaccountname = res.data.bankaccountname;
+          sessionStorage.bankaccountnumber = res.data.bankaccountnumber;
+          this.exchangeList = res.data.exchangeinfo;
         },
         res => {
           // console.log(res)
-          this.showWarnTips(res.msg.substr(2))
+          this.showWarnTips(res.msg.substr(2));
         }
-      )
+      );
     },
     // getExchangeList 为paypal兑换获取 暂时不用
     getExchagneList() {
@@ -281,95 +332,95 @@ export default {
         this.userid === undefined ||
         this.token === undefined
       ) {
-        this.loginFlag = false
-        return false
+        this.loginFlag = false;
+        return false;
       } else {
-        this.loginFlag = true
+        this.loginFlag = true;
       }
-      let url = this.url
+      let url = this.url;
       let data = {
         userid: this.userid,
         token: this.token,
         Infversion: this.Infversion,
         i18n: this.langType,
         appv: this.appv,
-        Method: 'QueryPaypalExchageInfo'
-      }
+        Method: "QueryPaypalExchageInfo"
+      };
       this.$apiPost(
         url,
         data,
         res => {
           // console.log(res)
-          this.balancegold = res.data.balancegold
-          this.allgold = res.data.balancegold * 1
-          this.photo = res.data.photo
-          this.email = res.data.email
-          sessionStorage.mobile = res.data.mobile
-          this.exchangeList = res.data.exchangeinfo
+          this.balancegold = res.data.balancegold;
+          this.allgold = res.data.balancegold * 1;
+          this.photo = res.data.photo;
+          this.email = res.data.email;
+          sessionStorage.mobile = res.data.mobile;
+          this.exchangeList = res.data.exchangeinfo;
         },
         res => {
           // console.log(res)
-          this.showWarnTips(res.msg.substr(2))
+          this.showWarnTips(res.msg.substr(2));
         }
-      )
+      );
     },
     // Common methods for prompting
     showWarnTips(text) {
-      this.warn_type = 1
-      this.warn_content = text
+      this.warn_type = 1;
+      this.warn_content = text;
       setTimeout(() => {
-        this.warn_type = 0
-      }, 2000)
+        this.warn_type = 0;
+      }, 2000);
     },
     // Convert the number to thousandths
     commafy(num) {
-      let iValue = num
-      let sValue = iValue + ''
-      let aValue = new Array()
-      let iNum = sValue.length % 3
-      let aResult
-      let index = 0
+      let iValue = num;
+      let sValue = iValue + "";
+      let aValue = new Array();
+      let iNum = sValue.length % 3;
+      let aResult;
+      let index = 0;
       if (sValue.length <= 3) {
-        return iValue
+        return iValue;
       } else {
         if (iNum == 0) {
           for (var i = 0; i < sValue.length; i = i + 3) {
-            aValue[index] = sValue[i] + '' + sValue[i + 1] + '' + sValue[i + 2]
-            index++
+            aValue[index] = sValue[i] + "" + sValue[i + 1] + "" + sValue[i + 2];
+            index++;
           }
         } else if (iNum == 1) {
-          aValue[0] = sValue[0]
-          index = 1
+          aValue[0] = sValue[0];
+          index = 1;
           for (var i = 1; i < sValue.length; i = i + 3) {
-            aValue[index] = sValue[i] + '' + sValue[i + 1] + '' + sValue[i + 2]
-            index++
+            aValue[index] = sValue[i] + "" + sValue[i + 1] + "" + sValue[i + 2];
+            index++;
           }
         } else if (iNum == 2) {
-          aValue[0] = sValue[0] + '' + sValue[1]
-          index = 1
+          aValue[0] = sValue[0] + "" + sValue[1];
+          index = 1;
           for (var i = 2; i < sValue.length; i = i + 3) {
-            aValue[index] = sValue[i] + '' + sValue[i + 1] + '' + sValue[i + 2]
-            index++
+            aValue[index] = sValue[i] + "" + sValue[i + 1] + "" + sValue[i + 2];
+            index++;
           }
         }
-        aResult = aValue.join(',')
-        return aResult.toString()
+        aResult = aValue.join(",");
+        return aResult.toString();
       }
     },
     refreshMe() {
       if (this.loginFlag === true) {
-        this.getBankList()
+        this.getBankList();
       }
     },
     handleOutboundLinkClicks(type, event) {
-      ga('send', 'event', {
+      ga("send", "event", {
         eventCategory: type,
-        eventAction: 'click'
+        eventAction: "click"
         // eventLabel: event.target.href
-      })
+      });
     }
   }
-}
+};
 </script>
 
 <style lang="less">

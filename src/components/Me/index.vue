@@ -1,6 +1,6 @@
 <template>
   <div v-title="$route.meta.title">
-    <v-head></v-head>
+    <v-Heads></v-Heads>
     <div class="userBox">
       <!-- 未登录状态 -->
       <div class="isNotload">
@@ -10,12 +10,12 @@
         <div class="loadBox">
           <h3 class="title">Choose Login Method</h3>
           <div class="loadbox">
-            <div class="facebook">
+            <div class="facebook" @click="login('facebook')">
               <img src="../../assets/images/My/Facebook@2x.png">
             </div>
-            <div class="google">
+            <div class="google" @click="login('google')">
               <img src="../../assets/images/My/Google@2x.png">
-              <div id="google-signin-button"></div>
+              <!-- <div id="google-signin-button"></div> -->
             </div>
           </div>
         </div>
@@ -45,14 +45,17 @@
           </div>
         </li>
       </ul>
+      <div @click="logout('facebook')">退出facebook</div>
+      <div @click="logout('google')">退出google</div>
     </div>
-    <v-footer></v-footer>
+    <v-foots></v-foots>
   </div>
 </template>
 
 <script>
-import head from "../Modules/head";
-import footer from "../Modules/footer";
+import heads from "../Modules/heads";
+import foots from "../Modules/foots";
+import hello from "hellojs/dist/hello.all";
 export default {
   name: "userIndex",
   data() {
@@ -63,8 +66,8 @@ export default {
     };
   },
   components: {
-    vHead: head,
-    vFooter: footer
+    vHeads: heads,
+    vFoots: foots
   },
   mounted() {
     document.getElementsByTagName("body")[0].className = "userIndex";
@@ -76,11 +79,21 @@ export default {
     } else {
       this.getMyPageMenu();
     }
+    hello.init(
+      {
+        facebook: "764171083944070",
+        google:
+          "430304329997-qd53qu724er5cv683ep694v36m59m6jn.apps.googleusercontent.com"
+      },
+      {
+        redirect_uri: "/userIndex"
+      }
+    );
     // 渲染
-    gapi.load("auth2", function() {});
-    gapi.signin2.render("google-signin-button", {
-      onsuccess: this.onSignIn
-    });
+    // gapi.load("auth2", function() {});
+    // gapi.signin2.render("google-signin-button", {
+    //   onsuccess: this.onSignIn
+    // });
   },
   methods: {
     // 谷歌登录获取数据
@@ -98,6 +111,36 @@ export default {
       // The ID token you need to pass to your backend:
       var id_token = user.getAuthResponse().id_token;
       console.log("ID Token: " + id_token);
+    },
+    // 登录操作
+    login(network) {
+      let provider = hello(network);
+      provider.login().then(
+        res => {
+          // 在这里进行登录后的处理
+          provider.api("me").then(r => {
+            console.log(r);
+          });
+          console.log(res);
+        },
+        error => {
+          console.log(error);
+          alert("Signin error: " + e.error.message);
+        }
+      );
+    },
+    // 退出登录操作
+    logout(network) {
+      let provider = hello(network);
+      provider.logout().then(
+        res => {
+          //  退出登录成功
+          console.log("Signed out");
+        },
+        error => {
+          console.log("Signed out error: " + error.message);
+        }
+      );
     },
     getMyPageMenu() {
       let url = this.url;

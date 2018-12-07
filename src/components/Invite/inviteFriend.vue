@@ -1,6 +1,6 @@
 <template>
   <div v-title="$route.meta.title">
-    <v-head></v-head>
+    <v-Heads></v-Heads>
     <div class="bottom">
       <img src="../../assets/images/background3@2x.png">
     </div>
@@ -17,7 +17,12 @@
     </div>
     <div class="nullBox"></div>
     <div class="list">
-      <ul class="inviteUl" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10">
+      <ul
+        class="inviteUl"
+        v-infinite-scroll="loadMore"
+        infinite-scroll-disabled="loading"
+        infinite-scroll-distance="10"
+      >
         <li class="master" v-if="masterName!==''">
           <div class="imgBox">
             <img v-if="masterImg !== ''" :src="masterImg">
@@ -39,10 +44,16 @@
             <p>{{item.frienddate}}</p>
           </div>
           <div class="coins">
-            <p v-if="item.gold ===0 ||item.gold === '0'||item.gold === ''" :class="langType==='en_US'?'en':'ch'">+{{ rewardparent }}{{$t("message.inviteFriend.words")}}</p>
+            <p
+              v-if="item.gold ===0 ||item.gold === '0'||item.gold === ''"
+              :class="langType==='en_US'?'en':'ch'"
+            >+{{ rewardparent }}{{$t("message.inviteFriend.words")}}</p>
             <p v-else class="init">+{{ item.gold }}</p>
           </div>
-          <div v-if="item.gold ===0 ||item.gold === '0'||item.gold === ''" class="tips">{{$t("message.inviteFriend.tips")}}</div>
+          <div
+            v-if="item.gold ===0 ||item.gold === '0'||item.gold === ''"
+            class="tips"
+          >{{$t("message.inviteFriend.tips")}}</div>
         </li>
       </ul>
     </div>
@@ -56,80 +67,80 @@
     <div class="warn" v-if="warn_type===1">
       <p>{{warn_content}}</p>
     </div>
-    <v-footer></v-footer>
+    <v-Foots></v-Foots>
   </div>
 </template>
 
 <script>
-import head from '../Modules/head'
-import footer from '../Modules/footer'
+import heads from "../Modules/heads";
+import foots from "../Modules/foots";
 export default {
-  name: 'inviteFriend',
+  name: "inviteFriend",
   data() {
     return {
       url: window.config.api.apiUrl,
       Infversion: window.config.api.Infversion,
       // user id
-      userid: '335428',
+      userid: "335428",
       // user token
-      token: 'b3622cba-3d62-4126-814b-cbb25d7d9c68',
-      appv: '1.0',
+      token: "b3622cba-3d62-4126-814b-cbb25d7d9c68",
+      appv: "1.0",
       list: [],
-      allFirend: '--',
-      allReword: '--',
-      masterName: '',
-      masterImg: '',
-      masterDate: '',
+      allFirend: "--",
+      allReword: "--",
+      masterName: "",
+      masterImg: "",
+      masterDate: "",
       pagesize: 10,
       pagestart: 1,
-      warn_content: '',
+      warn_content: "",
       warn_type: 0,
       showBottom: 0,
-      langType: 'en_US',
-      rewardparent: '0'
-    }
+      langType: "en_US",
+      rewardparent: "0"
+    };
   },
   components: {
-    vHead: head,
-    vFooter: footer
+    vHeads: heads,
+    vFoots: foots
   },
   mounted() {
-    document.getElementsByTagName('body')[0].className = 'inviteFriend'
-    this.langType = this.$store.state.langType
+    document.getElementsByTagName("body")[0].className = "inviteFriend";
+    this.langType = this.$store.state.langType;
     if (
       this.langType === null ||
       this.langType === undefined ||
-      this.langType === 'en_US'
+      this.langType === "en_US"
     ) {
-      this.langType = 'en_US'
-      this.$i18n.locale = 'en_US'
-      document.title = 'My Friends'
-    } else if (this.langType === 'zh_CN') {
-      this.langType = 'zh_CN'
-      this.$i18n.locale = 'zh_CN'
-      document.title = '我的好友'
+      this.langType = "en_US";
+      this.$i18n.locale = "en_US";
+      document.title = "My Friends";
+    } else if (this.langType === "zh_CN") {
+      this.langType = "zh_CN";
+      this.$i18n.locale = "zh_CN";
+      document.title = "我的好友";
     } else {
-      this.langType = 'ms_MY'
-      this.$i18n.locale = 'ms_MY'
-      document.title = 'teman-temanku'
+      this.langType = "ms_MY";
+      this.$i18n.locale = "ms_MY";
+      document.title = "teman-temanku";
     }
-    this.userid = this.$getHashParameter('userid')
-    this.token = this.$getHashParameter('token')
-    this.appv = this.$getHashParameter('infversionApp')
-    this.getInviteFriendInfo()
-    this.showLeftBtn('yes')
+    this.userid = this.$getHashParameter("userid");
+    this.token = this.$getHashParameter("token");
+    this.appv = this.$getHashParameter("infversionApp");
+    this.getInviteFriendInfo();
+    this.showLeftBtn("yes");
   },
   methods: {
     // show left bottom
     showLeftBtn(type) {
       if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-        window.webkit.messageHandlers.showLeftBtn.postMessage(type)
+        window.webkit.messageHandlers.showLeftBtn.postMessage(type);
       } else {
-        window.taskCentre.showLeftBtn(type)
+        window.taskCentre.showLeftBtn(type);
       }
     },
     getInviteFriendInfo() {
-      let url = this.url
+      let url = this.url;
       let data = {
         userid: this.userid,
         token: this.token,
@@ -138,42 +149,42 @@ export default {
         pagesize: this.pagesize,
         pagestart: this.pagestart,
         i18n: this.langType,
-        Method: 'QueryMyInviteFriendWap'
-      }
+        Method: "QueryMyInviteFriendWap"
+      };
       this.$apiPost(
         url,
         data,
         res => {
           // console.log(res)
-          this.masterName = res.data.parentname
-          this.masterImg = res.data.parentphoto
-          this.masterDate = res.data.parentdate
-          this.allFirend = res.data.inviteqty
-          this.allReword = res.data.totalgold
-          this.rewardparent = res.data.rewardparent
-          this.list = res.data.fiendlist
+          this.masterName = res.data.parentname;
+          this.masterImg = res.data.parentphoto;
+          this.masterDate = res.data.parentdate;
+          this.allFirend = res.data.inviteqty;
+          this.allReword = res.data.totalgold;
+          this.rewardparent = res.data.rewardparent;
+          this.list = res.data.fiendlist;
           if (this.list.length <= 10) {
-            this.showBottom = true
-            this.pagestart++
+            this.showBottom = true;
+            this.pagestart++;
           } else {
-            this.showBottom = true
-            this.pagestart++
+            this.showBottom = true;
+            this.pagestart++;
           }
-          if (this.masterName === '' && this.list.length === 0) {
-            this.showBottom = 0
+          if (this.masterName === "" && this.list.length === 0) {
+            this.showBottom = 0;
           }
         },
         res => {
-          console.log(res)
-          this.showWarnTips(res.msg.substr(2))
+          console.log(res);
+          this.showWarnTips(res.msg.substr(2));
         }
-      )
+      );
     },
     loadMore() {
       if (this.pagestart === 1) {
-        return false
+        return false;
       }
-      let url = this.url
+      let url = this.url;
       let data = {
         userid: this.userid,
         token: this.token,
@@ -182,75 +193,75 @@ export default {
         i18n: this.langType,
         pagesize: this.pagesize,
         pagestart: this.pagestart,
-        Method: 'QueryMyInviteFriendWap'
-      }
+        Method: "QueryMyInviteFriendWap"
+      };
       this.$apiPost(
         url,
         data,
         res => {
           // console.log(res)
-          this.list = this.list.concat(res.data.fiendlist)
+          this.list = this.list.concat(res.data.fiendlist);
           if (this.list.length <= 10) {
-            this.showBottom = true
-            this.pagesize++
+            this.showBottom = true;
+            this.pagesize++;
           } else {
-            this.showBottom = false
-            this.pagesize++
+            this.showBottom = false;
+            this.pagesize++;
           }
-          if (this.masterName === '' && this.list.length === 0) {
-            this.showBottom = 0
+          if (this.masterName === "" && this.list.length === 0) {
+            this.showBottom = 0;
           }
         },
         res => {
           // console.log(res)
-          this.showWarnTips(res.msg.substr(2))
+          this.showWarnTips(res.msg.substr(2));
         }
-      )
+      );
     },
     // 提示框公用方法
     showWarnTips(text) {
-      this.warn_type = 1
-      this.warn_content = text
+      this.warn_type = 1;
+      this.warn_content = text;
       setTimeout(() => {
-        this.warn_type = 0
-      }, 2000)
+        this.warn_type = 0;
+      }, 2000);
     },
     commafy(num) {
-      let iValue = num //要转换的数字
-      let sValue = iValue + ''
-      let aValue = new Array()
-      let iNum = sValue.length % 3
-      let aResult //转换结果
-      let index = 0
+      let iValue = num; //要转换的数字
+      let sValue = iValue + "";
+      let aValue = new Array();
+      let iNum = sValue.length % 3;
+      let aResult; //转换结果
+      let index = 0;
       if (sValue.length <= 3) {
-        return iValue
+        return iValue;
       } else {
         if (iNum == 0) {
           for (var i = 0; i < sValue.length; i = i + 3) {
-            aValue[index] = sValue[i] + '' + sValue[i + 1] + '' + sValue[i + 2]
-            index++
+            aValue[index] = sValue[i] + "" + sValue[i + 1] + "" + sValue[i + 2];
+            index++;
           }
         } else if (iNum == 1) {
-          aValue[0] = sValue[0]
-          index = 1
+          aValue[0] = sValue[0];
+          index = 1;
           for (var i = 1; i < sValue.length; i = i + 3) {
-            aValue[index] = sValue[i] + '' + sValue[i + 1] + '' + sValue[i + 2]
-            index++
+            aValue[index] = sValue[i] + "" + sValue[i + 1] + "" + sValue[i + 2];
+            index++;
           }
         } else if (iNum == 2) {
-          aValue[0] = sValue[0] + '' + sValue[1]
-          index = 1
+          aValue[0] = sValue[0] + "" + sValue[1];
+          index = 1;
           for (var i = 2; i < sValue.length; i = i + 3) {
-            aValue[index] = sValue[i] + '' + sValue[i + 1] + '' + sValue[i + 2]
-            index++
+            aValue[index] = sValue[i] + "" + sValue[i + 1] + "" + sValue[i + 2];
+            index++;
           }
         }
-        aResult = aValue.join(',')
-        return aResult.toString()
+        aResult = aValue.join(",");
+        return aResult.toString();
       }
     }
   }
-}
+};
 </script>
 
 <style lang="less">
@@ -421,7 +432,7 @@ export default {
     .master {
       width: 100%;
       height: 1.75rem;
-      background: url('../../assets/images/background3@2x.png') no-repeat;
+      background: url("../../assets/images/background3@2x.png") no-repeat;
       background-size: 100% 100%;
       border-radius: 0.2rem 0.2rem 0 0;
       border: none;
@@ -441,7 +452,7 @@ export default {
           position: absolute;
           width: 1.6rem;
           height: 0.45rem;
-          background: url('../../assets/images/icon_1@2x.png') no-repeat;
+          background: url("../../assets/images/icon_1@2x.png") no-repeat;
           background-size: 100% 100%;
           font-size: 0.2rem;
           color: #ffffff;
@@ -518,7 +529,7 @@ export default {
     color: #707070;
   }
   h3::before {
-    content: '';
+    content: "";
     position: absolute;
     width: 1.05rem;
     height: 1px;
@@ -527,7 +538,7 @@ export default {
     left: 1.3rem;
   }
   h3::after {
-    content: '';
+    content: "";
     position: absolute;
     width: 1.05rem;
     height: 1px;
