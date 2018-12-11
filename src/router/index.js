@@ -4,7 +4,7 @@ import VueResource from 'vue-resource'
 Vue.use(Router)
 Vue.use(VueResource)
 export default new Router({
-  mode: 'history',
+  mode: 'hash',
   routes: [
     // 功能组件
     {
