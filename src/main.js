@@ -2,22 +2,25 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-import router from './router'
-import Vuex from 'vuex'
+import router from './router' // 引入路由
+import Vuex from 'vuex' // vuex状态管理
 import store from './vuex/store'
-import packaging from './common/js/packaging'
+import packaging from './common/js/packaging' // 自定义封装方法
 // 引入初始化css
 import './common/css/public.css'
 import './common/css/style.css'
 import './assets/js/rem.js'
+// 文章详情
 import artContent from '../src/components/Offers/content.vue'
 import MintUI from 'mint-ui'
-import VueAnalytics from 'vue-analytics'
-import VueI18n from 'vue-i18n'
+import VueAnalytics from 'vue-analytics' // google Analytics 事件统计
+import VueI18n from 'vue-i18n' // 多语言
 import Axios from 'axios'
+// 引入语言包
 import en from '../static/lang/en_US'
 import zh from '../static/lang/zh_CN'
 import ms from '../static/lang/ms_MY'
+// 分享插件
 import SocialSharing from 'vue-social-sharing'
 Vue.use(SocialSharing)
 Vue.prototype.$axios = Axios
@@ -31,7 +34,7 @@ const i18n = new VueI18n({
   }
 })
 Vue.use(VueAnalytics, {
-  id: 'UA-126505686-1',
+  id: 'UA-126505686-1', // google Analytics 统计id
   router,
   autoTracking: {
     pageviewOnLoad: false

@@ -1,6 +1,5 @@
 <template>
   <div v-title="$route.meta.title">
-    <v-Heads></v-Heads>
     <div class="bottom">
       <img src="../../assets/images/background3@2x.png">
     </div>
@@ -39,21 +38,50 @@
             <img v-if="item.friendphoto !==''" :src="item.friendphoto">
             <img v-else src="../../assets/images/icon.png">
           </div>
-          <div class="contentBox">
-            <h3>{{item.friendname}}</h3>
-            <p>{{item.frienddate}}</p>
-          </div>
-          <div class="coins">
-            <p
+          <!-- 文字部分 -->
+          <div class="words">
+            <!-- 内容 -->
+            <div class="contentBox">
+              <h3>{{item.friendname}}</h3>
+              <p>{{item.frienddate}}</p>
+            </div>
+            <!-- 金币 -->
+            <div class="coins">
+              <p
+                v-if="item.gold ===0 ||item.gold === '0'||item.gold === ''"
+                :class="langType==='en_US'?'en':'ch'"
+              >+{{ rewardparent }}{{$t("message.inviteFriend.words")}}</p>
+              <p v-else class="init">+{{ item.gold }}</p>
+            </div>
+            <div
               v-if="item.gold ===0 ||item.gold === '0'||item.gold === ''"
-              :class="langType==='en_US'?'en':'ch'"
-            >+{{ rewardparent }}{{$t("message.inviteFriend.words")}}</p>
-            <p v-else class="init">+{{ item.gold }}</p>
+              class="tips"
+            >{{$t("message.inviteFriend.tips")}}</div>
           </div>
-          <div
-            v-if="item.gold ===0 ||item.gold === '0'||item.gold === ''"
-            class="tips"
-          >{{$t("message.inviteFriend.tips")}}</div>
+          <!-- 第二阶段 The second stage -->
+          <div class="bonus">
+            <!-- 内容  -->
+            <div class="contentBox">
+              <h3>{{$t("message.inviteFriend.stepTwo")}}</h3>
+            </div>
+            <!-- 金币 -->
+            <div class="coins">
+              <p :class="langType==='en_US'?'en':'ch'">+1000{{$t("message.inviteFriend.words")}}</p>
+            </div>
+            <div class="tips">{{$t("message.inviteFriend.tips_1")}}</div>
+          </div>
+          <!-- 第三阶段 The third stage -->
+          <div class="bonus">
+            <!-- 内容 -->
+            <div class="contentBox">
+              <h3>{{$t("message.inviteFriend.stepThree")}}</h3>
+            </div>
+            <!-- 金币 -->
+            <div class="coins">
+              <p :class="langType==='en_US'?'en':'ch'">+1000{{$t("message.inviteFriend.words")}}</p>
+            </div>
+            <div class="tips">{{$t("message.inviteFriend.tips_2")}}</div>
+          </div>
         </li>
       </ul>
     </div>
@@ -67,13 +95,10 @@
     <div class="warn" v-if="warn_type===1">
       <p>{{warn_content}}</p>
     </div>
-    <v-Foots></v-Foots>
   </div>
 </template>
 
 <script>
-import heads from "../Modules/heads";
-import foots from "../Modules/foots";
 export default {
   name: "inviteFriend",
   data() {
@@ -81,9 +106,9 @@ export default {
       url: window.config.api.apiUrl,
       Infversion: window.config.api.Infversion,
       // user id
-      userid: "335428",
+      userid: "335464",
       // user token
-      token: "b3622cba-3d62-4126-814b-cbb25d7d9c68",
+      token: "4d642f42-0d99-4aa4-89e0-fa41165615d3",
       appv: "1.0",
       list: [],
       allFirend: "--",
@@ -100,13 +125,9 @@ export default {
       rewardparent: "0"
     };
   },
-  components: {
-    vHeads: heads,
-    vFoots: foots
-  },
   mounted() {
     document.getElementsByTagName("body")[0].className = "inviteFriend";
-    this.langType = this.$store.state.langType;
+    this.langType = this.$getUrlParam("lang");
     if (
       this.langType === null ||
       this.langType === undefined ||
@@ -124,9 +145,19 @@ export default {
       this.$i18n.locale = "ms_MY";
       document.title = "teman-temanku";
     }
-    this.userid = this.$getHashParameter("userid");
-    this.token = this.$getHashParameter("token");
-    this.appv = this.$getHashParameter("infversionApp");
+    if (
+      sessionStorage.userid === undefined ||
+      sessionStorage.userid === "undefined"
+    ) {
+      this.userid = this.$getHashParameter("userid");
+      this.token = this.$getHashParameter("token");
+      this.appv = this.$getHashParameter("infversionApp");
+    } else {
+      this.userid = sessionStorage.userid;
+      this.token = sessionStorage.token;
+      this.appv = sessionStorage.appv;
+      this.langType = sessionStorage.langType;
+    }
     this.getInviteFriendInfo();
     this.showLeftBtn("yes");
   },
@@ -365,68 +396,142 @@ export default {
           border-radius: 50%;
         }
       }
-      .contentBox {
-        width: 45%;
-        height: 1.71rem;
-        padding: 0 0.2rem;
-        h3 {
-          height: 0.3rem;
-          font-size: 0.3rem;
-          margin-top: 0.45rem;
-          color: #333333;
-          overflow-x: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
+      .words {
+        width: 80%;
+        display: flex;
+        display: -webkit-box;
+        display: -webkit-flex;
+        flex-wrap: wrap;
+        .contentBox {
+          width: 55%;
+          height: 1.71rem;
+          padding: 0 0.2rem;
+          h3 {
+            height: 0.3rem;
+            font-size: 0.3rem;
+            margin-top: 0.45rem;
+            color: #333333;
+            overflow-x: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+          p {
+            font-size: 0.26rem;
+            margin-top: 0.2rem;
+            color: #777777;
+          }
         }
-        p {
+        .coins {
+          width: 45%;
+          height: 1.71rem;
+          font-size: 0.28rem;
+          .init {
+            width: 1.63rem;
+            height: 0.68rem;
+            background: #e61937;
+            text-align: center;
+            line-height: 0.68rem;
+            color: #ffffff;
+            margin: 0.5rem auto 0;
+            border-radius: 0.1rem;
+          }
+          .ch {
+            height: 0.68rem;
+            background: #e61937;
+            text-align: center;
+            line-height: 0.68rem;
+            color: #ffffff;
+            margin: 0.5rem auto 0;
+            border-radius: 0.1rem;
+          }
+          .en {
+            height: 0.68rem;
+            background: #e61937;
+            text-align: center;
+            color: #ffffff;
+            padding-top: 0.1rem;
+            font-size: 0.24rem;
+            margin: 0.5rem auto 0;
+            border-radius: 0.1rem;
+          }
+        }
+        .tips {
+          width: 100%;
           font-size: 0.26rem;
-          margin-top: 0.2rem;
+          padding-bottom: 0.2rem;
+          text-align: left;
           color: #777777;
+          padding-left: 0.2rem;
+          margin-top: -0.2rem;
+          line-height: 0.26rem;
         }
       }
-      .coins {
-        width: 40%;
-        height: 1.71rem;
-        font-size: 0.28rem;
-        .init {
-          width: 1.63rem;
-          height: 0.68rem;
-          background: #e61937;
-          text-align: center;
-          line-height: 0.68rem;
-          color: #ffffff;
-          margin: 0.5rem auto 0;
-          border-radius: 0.1rem;
-        }
-        .ch {
-          height: 0.68rem;
-          background: #e61937;
-          text-align: center;
-          line-height: 0.68rem;
-          color: #ffffff;
-          margin: 0.5rem auto 0;
-          border-radius: 0.1rem;
-        }
-        .en {
-          height: 0.68rem;
-          background: #e61937;
-          text-align: center;
-          color: #ffffff;
-          padding-top: 0.1rem;
-          font-size: 0.24rem;
-          margin: 0.5rem auto 0;
-          border-radius: 0.1rem;
-        }
-      }
-      .tips {
+      .bonus {
         width: 100%;
-        font-size: 0.26rem;
-        padding-bottom: 0.2rem;
-        text-align: left;
-        color: #777777;
-        padding-left: 1.2rem;
-        margin-top: -0.2rem;
-        line-height: 0.26rem;
+        padding-left: 15%;
+        display: flex;
+        display: -webkit-box;
+        display: -webkit-flex;
+        flex-wrap: wrap;
+        .contentBox {
+          width: 52%;
+          padding: 0 0.2rem;
+          border-top: 1px solid #eaeaea;
+          h3 {
+            height: 0.36rem;
+            font-size: 0.28rem;
+            margin-top: 0.45rem;
+            color: #333333;
+            overflow-x: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+        .coins {
+          width: 42%;
+          // height: 1.71rem;
+          font-size: 0.28rem;
+          border-top: 1px solid #eaeaea;
+          .init {
+            width: 1.63rem;
+            height: 0.68rem;
+            background: #e61937;
+            text-align: center;
+            line-height: 0.68rem;
+            color: #ffffff;
+            margin: 0.2rem auto 0;
+            border-radius: 0.1rem;
+          }
+          .ch {
+            height: 0.68rem;
+            background: #e61937;
+            text-align: center;
+            line-height: 0.68rem;
+            color: #ffffff;
+            margin: 0.2rem auto 0;
+            border-radius: 0.1rem;
+          }
+          .en {
+            height: 0.68rem;
+            background: #e61937;
+            text-align: center;
+            color: #ffffff;
+            padding-top: 0.1rem;
+            font-size: 0.24rem;
+            margin: 0.2rem auto 0;
+            border-radius: 0.1rem;
+          }
+        }
+        .tips {
+          width: 100%;
+          font-size: 0.26rem;
+          padding-bottom: 0.2rem;
+          padding-left: 0.2rem;
+          text-align: left;
+          color: #777777;
+          margin-top: 0.2rem;
+          line-height: 0.26rem;
+        }
       }
     }
     .master {

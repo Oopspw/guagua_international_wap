@@ -3,10 +3,28 @@
     <v-Heads></v-Heads>
     <!-- bannar 图 -->
     <div class="bannar">
-      <img v-if="langType ==='en_US'" src="../../assets/images/invite/en/iocn_top@2x.png">
-      <img v-if="langType ==='zh_CN'" src="../../assets/images/invite/cn/iocn_top@2x.png">
-      <img v-if="langType ==='ms_MY'" src="../../assets/images/invite/my/iocn_top@2x.png">
+      <img v-if="langType ==='en_US'" src="../../assets/images/invite/en/iocn_top@2x.png" alt>
+      <img v-if="langType ==='zh_CN'" src="../../assets/images/invite/cn/iocn_top@2x.png" alt>
+      <img v-if="langType ==='ms_MY'" src="../../assets/images/invite/my/iocn_top@2x.png" alt>
     </div>
+    <img
+      class="stepImg"
+      v-if="langType ==='en_US'"
+      src="../../assets/images/invite/en/1STStep@2x.png"
+      alt
+    >
+    <img
+      class="stepImg"
+      v-if="langType ==='zh_CN'"
+      src="../../assets/images/invite/cn/1STStep@2x.png"
+      alt
+    >
+    <img
+      class="stepImg"
+      v-if="langType ==='ms_MY'"
+      src="../../assets/images/invite/my/1STStep@2x.png"
+      alt
+    >
     <div class="bigBox">
       <div class="Box">
         <div class="step">
@@ -18,22 +36,22 @@
           <div class="inviteBox">
             <ul class="inviteWay">
               <li class="whatApp" @click="shareChannel('Whatsapp')">
-                <img src="../../assets/images/invite/WSAPP@2x.png">
+                <img src="../../assets/images/invite/WSAPP@2x.png" alt>
               </li>
               <li class="faceBook" @click="shareChannel('Facebook')">
-                <img src="../../assets/images/invite/FB@2x.png">
+                <img src="../../assets/images/invite/FB@2x.png" alt>
               </li>
               <li class="wechat" @click="shareChannel('Wechat')">
-                <img src="../../assets/images/invite/WC@2x.png">
+                <img src="../../assets/images/invite/WC@2x.png" alt>
               </li>
               <li class="message" @click="shareChannel('Messenger')">
-                <img src="../../assets/images/invite/MEs@2x.png">
+                <img src="../../assets/images/invite/MEs@2x.png" alt>
               </li>
               <li class="Circle" @click="shareChannel('WechatMoments')">
-                <img src="../../assets/images/invite/mmt@2x.png">
+                <img src="../../assets/images/invite/mmt@2x.png" alt>
               </li>
               <li class="more" @click="shareChannel('all')">
-                <img src="../../assets/images/invite/more@2x.png">
+                <img src="../../assets/images/invite/more@2x.png" alt>
               </li>
             </ul>
             <h1 class="and">{{$t("message.money.and")}}</h1>
@@ -68,7 +86,8 @@
             {{$t("message.money.stepTitle_three")}}
           </h3>
           <p>{{$t("message.money.stepText_three")}}</p>
-          <img class="stepImg" src="../../assets/images/invite/003@2x.png">
+          <!-- <img class="tableImg" src="../../assets/images/invite/en/table.png" alt> -->
+          <img class="stepImg" src="../../assets/images/invite/003@2x.png" alt>
         </div>
         <div class="step">
           <h3>
@@ -80,95 +99,223 @@
             v-if="langType ==='en_US'"
             class="stepImg"
             src="../../assets/images/invite/en/004@2x.png"
+            alt
           >
           <img
             v-if="langType ==='zh_CN'"
             class="stepImg"
             src="../../assets/images/invite/cn/004@2x.png"
+            alt
           >
           <img
             v-if="langType ==='ms_MY'"
             class="stepImg"
             src="../../assets/images/invite/my/004@2x.png"
+            alt
           >
-        </div>
-        <div class="step">
-          <h3>
-            <em>5</em>
-            {{$t("message.money.stepTitle_five")}}
-          </h3>
-          <p>{{$t("message.money.stepText_five")}}</p>
-          <img class="stepImg" src="../../assets/images/invite/005@2x.png">
-          
-          <img
-            v-if="langType ==='en_US'"
-            class="Chart"
-            src="../../assets/images/invite/en/Chart@2x.png"
-          >
-          <img
-            v-if="langType ==='zh_CN'"
-            class="Chart"
-            src="../../assets/images/invite/cn/Chart@2x.png"
-          >
-          <img
-            v-if="langType ==='ms_MY'"
-            class="Chart"
-            src="../../assets/images/invite/my/Chart@2x.png"
-          >
-          
-          <img class="arrows" src="../../assets/images/invite/Rectangle6@2x.png">
-          
-          <img
-            @click="shareChannel('all')"
-            v-if="langType ==='en_US'"
-            class="inviteButton"
-            src="../../assets/images/invite/en/Buttonbig@2x.png"
-          >
-          <img
-            @click="shareChannel('all')"
-            v-if="langType ==='zh_CN'"
-            class="inviteButton"
-            src="../../assets/images/invite/cn/Buttonbig@2x.png"
-          >
-          <img
-            @click="shareChannel('all')"
-            v-if="langType ==='ms_MY'"
-            class="inviteButton"
-            src="../../assets/images/invite/my/Buttonbig@2x.png"
-          >
+          <h4 class="howGet" @click="mask='true'">
+            <img src="../../assets/images/invite/tips@2x.png">
+            {{$t("message.money.howGet")}}
+          </h4>
         </div>
       </div>
+    </div>
+    <img
+      class="stepImg"
+      v-if="langType ==='en_US'"
+      src="../../assets/images/invite/en/2ndbar@2x.png"
+      alt
+    >
+    <img
+      class="stepImg"
+      v-if="langType ==='zh_CN'"
+      src="../../assets/images/invite/cn/2ndbar@2x.png"
+      alt
+    >
+    <img
+      class="stepImg"
+      v-if="langType ==='ms_MY'"
+      src="../../assets/images/invite/my/2ndbar@2x.png"
+      alt
+    >
+    <div @click="visiteFriend()">
+      <img
+        class="stepImg"
+        v-if="langType ==='en_US'"
+        src="../../assets/images/invite/en/Group33@2x.png"
+        alt
+      >
+      <img
+        class="stepImg"
+        v-if="langType ==='zh_CN'"
+        src="../../assets/images/invite/cn/Group33@2x.png"
+        alt
+      >
+      <img
+        class="stepImg"
+        v-if="langType ==='ms_MY'"
+        src="../../assets/images/invite/my/Group33@2x.png"
+        alt
+      >
+    </div>
+    <!-- 第三大块 -->
+    <img
+      class="stepImg"
+      v-if="langType ==='en_US'"
+      src="../../assets/images/invite/en/3ndbar@2x.png"
+      alt
+    >
+    <img
+      class="stepImg"
+      v-if="langType ==='zh_CN'"
+      src="../../assets/images/invite/cn/3ndbar@2x.png"
+      alt
+    >
+    <img
+      class="stepImg"
+      v-if="langType ==='ms_MY'"
+      src="../../assets/images/invite/my/3ndbar@2x.png"
+      alt
+    >
+    <!-- 3rndstop@2x -->
+    <div @click="visiteFriend()">
+      <img
+        class="stepImg"
+        v-if="langType ==='en_US'"
+        src="../../assets/images/invite/en/3rndstop@2x.png"
+        alt
+      >
+      <img
+        class="stepImg"
+        v-if="langType ==='zh_CN'"
+        src="../../assets/images/invite/cn/3rndstop@2x.png"
+        alt
+      >
+      <img
+        class="stepImg"
+        v-if="langType ==='ms_MY'"
+        src="../../assets/images/invite/my/3rndstop@2x.png"
+        alt
+      >
+    </div>
+
+    <img
+      class="stepImg"
+      v-if="langType ==='en_US'"
+      src="../../assets/images/invite/en/4ndbar@2x.png"
+      alt
+    >
+    <img
+      class="stepImg"
+      v-if="langType ==='zh_CN'"
+      src="../../assets/images/invite/cn/4ndbar@2x.png"
+      alt
+    >
+    <img
+      class="stepImg"
+      v-if="langType ==='ms_MY'"
+      src="../../assets/images/invite/my/4ndbar@2x.png"
+      alt
+    >
+    <div class="step5">
+      <p>{{$t("message.money.stepText_five")}}</p>
+      <img class="stepImg" src="../../assets/images/invite/005@2x.png" alt>
+      
+      <img
+        v-if="langType ==='en_US'"
+        class="Chart"
+        src="../../assets/images/invite/en/Chart@2x.png"
+        alt
+      >
+      <img
+        v-if="langType ==='zh_CN'"
+        class="Chart"
+        src="../../assets/images/invite/cn/Chart@2x.png"
+        alt
+      >
+      <img
+        v-if="langType ==='ms_MY'"
+        class="Chart"
+        src="../../assets/images/invite/my/Chart@2x.png"
+        alt
+      >
+      
+      <img class="arrows" src="../../assets/images/invite/Rectangle6@2x.png" alt>
+      
+      <img
+        @click="shareChannel('all')"
+        v-if="langType ==='en_US'"
+        class="inviteButton"
+        src="../../assets/images/invite/en/Buttonbig@2x.png"
+        alt
+      >
+      <img
+        @click="shareChannel('all')"
+        v-if="langType ==='zh_CN'"
+        class="inviteButton"
+        src="../../assets/images/invite/cn/Buttonbig@2x.png"
+        alt
+      >
+      <img
+        @click="shareChannel('all')"
+        v-if="langType ==='ms_MY'"
+        class="inviteButton"
+        src="../../assets/images/invite/my/Buttonbig@2x.png"
+        alt
+      >
     </div>
     <div class="warn" v-if="warn_type===1">
       <p>{{warn_content}}</p>
     </div>
-    <div v-if="mask" class="mask" @touchmove.prevent></div>
-    <div v-if="mask" class="howUseBox" @touchmove.prevent>
+    <div v-if="mask||mask==='true'" class="mask" @touchmove.prevent></div>
+    <div v-if="mask === true" class="howUseBox" @touchmove.prevent>
       <img
         v-if="langType ==='en_US'"
         class="inviteButton"
         src="../../assets/images/invite/en/Group3@2x.png"
+        alt
       >
       <img
         v-if="langType ==='zh_CN'"
         class="inviteButton"
         src="../../assets/images/invite/cn/Group3@2x.png"
+        alt
       >
       <img
         v-if="langType ==='ms_MY'"
         class="inviteButton"
         src="../../assets/images/invite/my/Group3@2x.png"
+        alt
       >
       <img class="closeBox" src="../../assets/images/invite/closeBox@2x.png" @click="mask=false">
     </div>
-    <v-Foots></v-Foots>
+    <div v-if="mask=== 'true'" class="howGetBox" @touchmove.prevent @click="mask=false">
+      <img
+        v-if="langType ==='en_US'"
+        class="inviteButton"
+        src="../../assets/images/invite/en/Group@2x.png"
+        alt
+      >
+      <img
+        v-if="langType ==='zh_CN'"
+        class="inviteButton"
+        src="../../assets/images/invite/cn/Group2@2x.png"
+        alt
+      >
+      <img
+        v-if="langType ==='ms_MY'"
+        class="inviteButton"
+        src="../../assets/images/invite/my/Group@2x.png"
+        alt
+      >
+    </div>
   </div>
 </template>
 
 <script>
-import { Indicator } from "mint-ui";
 import heads from "../Modules/heads";
 import foots from "../Modules/foots";
+import { Indicator } from "mint-ui";
 export default {
   name: "money",
   data() {
@@ -188,10 +335,6 @@ export default {
       warn_type: 0,
       langType: "en_US"
     };
-  },
-  components: {
-    vHeads: heads,
-    vFoots: foots
   },
   created() {
     this.userid = this.$getUrlParam("userid");
@@ -224,6 +367,9 @@ export default {
     } else {
       this.loginFlag = true;
     }
+  },
+  components: {
+    vHeads: heads
   },
   mounted() {
     window["reloadMe"] = function() {
@@ -340,6 +486,14 @@ export default {
       this.token = token;
       this.infversionApp = appv;
       this.getPageInfo();
+    },
+    // 去邀请好友列表查看详情
+    visiteFriend() {
+      sessionStorage.userid = this.userid;
+      sessionStorage.token = this.token;
+      sessionStorage.appv = this.appv;
+      sessionStorage.langType = this.langType;
+      this.$router.push("/inviteFriend");
     }
   }
 };
@@ -349,6 +503,9 @@ export default {
 @font-face {
   font-family: "font_b";
   src: url("../../assets/fonts/PINGFANGREGULAR.ttf") format("truetype");
+}
+.stepImg {
+  width: 100%;
 }
 .money {
   background: #ffffff;
@@ -372,10 +529,17 @@ export default {
     border-left: 1px solid #c9c9c9;
     .step {
       margin-bottom: 0.6rem;
+      position: relative;
       .stepImg {
         width: 100%;
         display: block;
         margin: 0 auto;
+      }
+      .tableImg {
+        width: 100%;
+        display: block;
+        margin-left: -0.235rem;
+        margin-top: 0.1rem;
       }
       .Chart {
         width: 90%;
@@ -512,6 +676,20 @@ export default {
       }
       .howUse {
         font-size: 0.26rem;
+        margin-top: 0.3rem;
+        text-align: right;
+        color: #265fb6;
+        padding-right: 0.2rem;
+        text-decoration: underline;
+        img {
+          width: 0.34rem;
+          height: 0.34rem;
+          vertical-align: middle;
+        }
+      }
+      .howGet {
+        font-size: 0.26rem;
+        margin-top: 0.3rem;
         text-align: right;
         color: #265fb6;
         padding-right: 0.2rem;
@@ -543,15 +721,64 @@ export default {
   -webkit-transform: translate(-50%, -50%);
   z-index: 166;
   img {
-    height: 10rem;
-    display: block;
-    margin: 0 auto;
+    width: 100%;
   }
   .closeBox {
     width: 0.7rem;
     height: 0.7rem;
     display: block;
     margin: 0.2rem auto 0;
+  }
+}
+.howGetBox {
+  width: 6rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  z-index: 166;
+  img {
+    width: 100%;
+  }
+  .closeBox {
+    display: none;
+    width: 0.7rem;
+    height: 0.7rem;
+    display: block;
+    margin: 0.2rem auto 0;
+  }
+}
+.step5 {
+  width: 100%;
+  padding-bottom: 1rem;
+  .stepImg {
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+  }
+  .Chart {
+    width: 90%;
+    display: block;
+    margin: 0.45rem auto 0;
+  }
+  .arrows {
+    width: 0.27rem;
+    display: block;
+    margin: 0.75rem auto 0;
+  }
+
+  .inviteButton {
+    width: 6.65rem;
+    display: block;
+    margin: 0.5rem auto 0;
+  }
+  p {
+    margin-top: 0.15rem;
+    padding-left: 0.25rem;
+    padding-right: 0.2rem;
+    font-size: 0.3rem;
+    line-height: 0.4rem;
   }
 }
 </style>

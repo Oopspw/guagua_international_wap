@@ -1,6 +1,21 @@
 // en.js
 module.exports = {
   message: {
+    contactUs: {
+      palpayEmail: 'Paypal e-mel',
+      EnterEmail: 'Masukkan email PayPal anda',
+      Redeem: 'Menebus',
+      Precautions: 'Langkah berjaga-jaga:',
+      Precautions_first:
+        '1. bayaran tidak akan dibuat jika emailaddress yang tidak berdaftar untuk akaun Paypal.',
+      Precautions_two: '2. Paypal akan mengambil beberapa yuran urus niaga.',
+      Precautions_three:
+        '3. bayaran akan dibuat dalam masa 72 jam, sila pastikan anda memasukkan butir-butir yang betul. Tiada bayaran balik boleh dibuat sebaik sahaja Hadiah tersebut telah dihantar.',
+      successTitle: 'Permohonan di dalam berjaya',
+      successContent:
+        'Kami telah menerima permintaan penebusan anda, pembayaran sedang berjalan, anda boleh menyemak penebusan di "My Exchange"!',
+      finishBtn: 'Pergi menyemak'
+    },
     exchange: {
       myBalance: 'Baki saya(coins)',
       getLogin: 'Selepas log masuk',
@@ -10,7 +25,20 @@ module.exports = {
         'Tebus Coins dari aplikasi untuk menjadi wang pindahkan ke dalam akaun peribadi anda',
       consume: 'Anda menggunakan',
       first: 'Penebusan kali pertama hanya',
-      MoneyWithdraw: 'Pengeluaran Wang'
+      MoneyWithdraw: 'Pengeluaran Wang',
+      popTitle: 'Mengikat nombor telefon',
+      mobilePlaceholder: 'Masukkan Nombor telefon bimbit',
+      codePlaceholder: 'Kod pengesahan',
+      getCode: 'KIRIM',
+      countDown: 'hantar semula',
+      tips: 'Petua:',
+      tipsFirst:
+        '1.Untuk keselamatan maklumat akaun anda, sila mengikat nombor telefon anda dahulu.',
+      tipsSecond:
+        '2. anda akan menerima mesej apabila pengeluaran anda tiba di akaun.',
+      popBtn: 'Pengikat keselamatan',
+      errorMsg: 'Sila masukkan nombor telefon yang sah',
+      codeSuccess: 'Sila masukkan kod pengesahan yang sah'
     },
     extract: {
       bankName: 'Jumlah Pengeluaran',
@@ -37,8 +65,14 @@ module.exports = {
       words: 'duit syiling untuk diedarkan',
       tips:
         'Petua: Setelah rakan telah berkongsi artikel dan boleh dilihat, anda boleh mendapatkannya!',
+      tips_1:
+        'Petua: dalam 3 hari, rakan kongsi artikel berkongsi memperoleh 750 keping emas, boleh dapatkan!',
+      tips_2:
+        'Petua: dalam 7 hari, kawan berkongsi artikel yang memperoleh 1750 keping emas, boleh dapatkan!',
       nullTip: 'Kawan-kawan anda akan muncul di sini',
-      noMore: 'Garisan Bawah'
+      noMore: 'Garisan Bawah',
+      stepTwo: '2ND STEP BONUS',
+      stepThree: '3ND STEP BONUS'
     },
     money: {
       scanCode: 'Imbas kod untuk men-download',
@@ -48,23 +82,38 @@ module.exports = {
       and: 'ATAU',
       stepTitle_one: 'MENGHANTAR JEMPUTAN',
       stepText_one:
-        'Klik ikon Apps dibawah untuk hantar jemputan patan ke rakan anda',
+        'Klik ikon Apps dibawah untuk hantar jemputan pautan ke rakan anda.',
       stepTitle_two: 'MASUKKAN KOD JEMPUTAN ANDA',
-      stepText_two: 'Bagi rakan anda masuka jemputan kod anda dalam App dia',
+      stepText_two: 'Bagi rakan anda masukan jemputan kod anda dalam App dia.',
       stepTitle_three: 'BERITA SAHAM RAKAN ANDA',
-      stepText_three: 'Bagi rakan untuk mengkongsikan 1 berita di Readward App',
-      stepTitle_four: 'DAPATI 2300 COINS',
+      stepText_three:
+        'Mengajar kawan anda untuk berkongsi 1 berita dalam aplikasi Readward di media sosialnya',
+      stepTitle_four: 'DAPATI 1300 COINS',
       stepText_four:
-        'Seseorang membaca berita yang dikongsi oleh kawan anda anda berdua akan mendapati coins',
+        'Apabila seseorang membuka serta “membaca penuh laman” berita yang kawan anda bagikan，kedua dua kawan dan anda akan mendapat pek hadiah',
       stepTitle_five: 'DAPATI KOMISEN COINS',
       stepText_five:
         '20% Komisen Coins yang anda akan untung dari rakan anda setiap hari',
-      howUse: '2 Bagaimana untuk memasukkan kod jemputan?'
+      howUse: '2 Bagaimana untuk memasukkan kod jemputan?',
+      howGet: 'Apakah itu “membaca penuh laman”?'
     },
     aboutUs: {
       Notice: 'Notis hak cipta',
       noticeContent:
-        'Hak cipta semua kandungan berita dalam Readward yang tergolong dalam rangkaian dari media, dan tidak mempunyai sebarang kaitan pun pemaju aplikasi Readward.The hanya berfungsi sebagai aggregator untuk berita.'
+        'Hak cipta semua kandungan berita dalam Readward yang tergolong dalam rangkaian dari media, dan tidak mempunyai sebarang kaitan pun pemaju aplikasi Readward.The hanya berfungsi sebagai aggregator untuk berita.',
+      title: 'Pengenalan permohonan',
+      l_title_1:
+        'am petrol, minum teh atau ‘top-up’ data telefon, untuk apa-apa sahaja!',
+      l_title_2:
+        'Tukarkan masa terluang menjadi wang dengan Free Money APP.Daftar masuk APP dan terima RM0.8 sekarang.',
+      p1: '— — —',
+      p2: '',
+      p3: '',
+      p4: 'Terima wang dalam kurang daripada 5 minit',
+      p5:
+        'Peroleh wang dalam masa terluang; semasa menunggu bas atau tren, menunggu hidangan makanan, ',
+      p6:
+        'sebelum tidur… Gunakan masa terluang ini untuk kongsikan kandungan yang menarik daripada APP ke media sosial.'
     },
     inviteCode: {
       enterCode: 'Sila masukkan kod jemputan',

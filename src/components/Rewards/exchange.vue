@@ -189,6 +189,9 @@ export default {
     }
   },
   mounted() {
+    if (!global.consoleSwitch) {
+      console.log = () => {};
+    }
     document.getElementsByTagName("body")[0].className = "exchange";
     this.userid = this.$getUrlParam("userid");
     this.token = this.$getUrlParam("token");
