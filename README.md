@@ -1,7 +1,6 @@
 # 国际版项目
+功能：google、facebook登录，国外主流社交APP分享，google统计
 
-``` 功能：google、facebook登录，国外主流社交APP分享，google统计
-```
 ## 项目构建步骤
 
 ## Build Setup
